@@ -1,29 +1,33 @@
 (function($){	
 
-	$( "#tabs" ).tabs(
-	{	disabled: [ 1, 2 ]}
-	);
-	
+var $panel =$('#respond .question-panel input');
 
-	
-//var $required_tab1 = $('#tabs-1 input[aria-required="true"]');
-//var $required_tab2 = $('#tabs-2 input[aria-required="true"]');
+$panel.each(function(){
 
+var	$panel = $(this).parents('.question-panel');
+var $button = $panel.find('button');
 
-$.each([1,2], function(index){
+    $(this).change(function(){
+    	let index = 0;
+        let lenght = $panel.find('input').length;
+    	$panel.find('input').each(function(k,e){
+    		if($(e).val() !== '') index += 1;
+		})
 
-	var required_tab = $('#tabs-'+index+' input[aria-required="true"]');
-	
-	required_tab.each( function(){	 
-	 	if($(this).val()){
+		if (index === lenght){
+            $button.prop('disabled', false);
+        }else {
+            $button.prop('disabled', true);
+		}
 
-$( ".selector" ).tabs( "option", "disabled", [ index] );
+	})
 
-	 	}
-	});
 })
 
 
+$(".question-panel-header").click(function(){
+	$(this).next().slideToggle();
+});
 
 
 
