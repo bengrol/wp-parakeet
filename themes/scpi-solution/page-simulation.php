@@ -22,10 +22,14 @@ $message_unsent  = "Message was not sent. Try Again.";
 $message_sent    = "Thanks! Your message has been sent.";
 
 //user posted variables
-$name = $_POST['message_name'];
-$email = $_POST['message_email'];
-$message = $_POST['message_text'];
-$human = $_POST['message_human'];
+
+
+
+
+$name     = isset($_POST['message_name'] ) ? esc_attr($_POST['message_name']) : null;
+$email    = isset($_POST['message_email']) ? esc_attr($_POST['message_email']) : null;
+$message  = isset($_POST['message_text'] ) ? esc_attr($_POST['message_text']) : null;
+$human    = isset($_POST['message_human']) ? esc_attr($_POST['message_human']) : null;
 
 //php mailer variables
 $to = get_option('admin_email');
@@ -60,7 +64,7 @@ if(!$human == 0){
 
     }
 }
-else if ($_POST['submitted']) my_contact_form_generate_response("error", $missing_content);
+else if (isset($_POST['submitted'])  && $_POST['submitted']) my_contact_form_generate_response("error", $missing_content);
 
 
 ?>
@@ -79,49 +83,26 @@ else if ($_POST['submitted']) my_contact_form_generate_response("error", $missin
                     </header>
 
                     <div class="entry-content">
-                        <?php the_content(); ?>
-
-
-
-                        <style type="text/css">
-                            .error{
-                                padding: 5px 9px;
-                                border: 1px solid red;
-                                color: red;
-                                border-radius: 3px;
-                            }
-
-                            .success{
-                                padding: 5px 9px;
-                                border: 1px solid green;
-                                color: green;
-                                border-radius: 3px;
-                            }
-
-                            form span{
-                                color: red;
-                            }
-                        </style>
-
+                        <?php //the_content(); ?>
 
                             <?php echo $response; ?>
 
-                            <form action="<?php the_permalink(); ?>" method="post">
+                            <form action="<?php the_permalink(); ?>" method="post" id="simulation-form">
                                 <div id="respond">
 
                                     <div class="panel-wrapper active">
                                         <h3 class="question-panel-header">info perso</h3>
                                         <div class="question-panel panel-1">
                                             <p><label for="name">Name: <span>*</span> <br>
-                                                    <input type="text" name="message_name"
-                                                           value="<?php echo esc_attr($_POST['message_name']); ?>"></label>
+                                                    <input type="text" name="message_name" required minlength="3"
+                                                           value="<?= $name ?>"></label>
                                             </p>
                                             <p><label for="message_email">Email: <span>*</span>
-                                                    <input type="email"
+                                                    <input type="email" required
                                                            name="message_email"
-                                                           value="<?php echo esc_attr($_POST['message_email']); ?>"></label>
+                                                           value="<?= $email; ?>"></label>
                                             </p>
-                                            <button class="valider panel-1" disabled="true" data-index="1">valider</button>
+                                            <button class="valider panel-1" disabled="true" data-panel="1">valider</button>
                                         </div>
                                     </div>
                                     <div class="panel-wrapper not-active">
@@ -130,10 +111,10 @@ else if ($_POST['submitted']) my_contact_form_generate_response("error", $missin
                                             <p><label for="message_text">Message: <span>*</span><br>
                                                     <textarea
                                                         type="text"
-                                                        name="message_text"><?php echo esc_textarea($_POST['message_text']); ?></textarea>
+                                                        name="message_text"><?= $message ; ?></textarea>
                                                 </label>
                                             </p>
-                                            <button class="valider panel-2" disabled="true" data-index="2">valider</button>
+                                            <button class="valider panel-2" disabled="true" data-panel="2">valider</button>
                                         </div>
                                     </div>
                                     <div class="panel-wrapper not-active">
