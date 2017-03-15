@@ -44,7 +44,7 @@ form span{
 
 }
 #respond button{
-	background-color: #C7AF28;
+	background-color: #e34514;
 	border: none;
 	width: 20%;
 	height: 50px;
@@ -63,12 +63,29 @@ form span{
 .not-active .question-panel{
 	display: none;
 }
-
+.question-panel .form-group{
+	min-height: 100px;
+}
 
 .panel-wrapper.active h3{
 	background-color: rgb(41, 118, 200);
 }
 
 .panel-wrapper.not-active h3{
-	background-color: rgba(99, 156, 215, 0.63);
+	background-color: rgba(99, 156, 215, 0.2);
+}
+
+.panel-2 .question-panel input[type="number"]{
+	width: 50%;
+
+}
+.panel-2 .question-panel label{
+	margin-right: 50px;
+
+}
+
+.panel-2 .question-panel h5 {
+	display: inline-block;
+	float: left;
+	width: 30%;
 }

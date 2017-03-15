@@ -5,11 +5,14 @@ $response = "";
 
 //function to generate response
 function my_contact_form_generate_response($type, $message){
-
     global $response;
+    if($type == "success") {
+        $response = "<div class='success'>{$message}</div>";
 
-    if($type == "success") $response = "<div class='success'>{$message}</div>";
-    else $response = "<div class='error'>{$message}</div>";
+    }
+    else {
+        $response = "<div class='error'>{$message}</div>";
+    }
 
 }
 
@@ -17,44 +20,42 @@ function my_contact_form_generate_response($type, $message){
 //response messages
 $not_human       = "Human verification incorrect.";
 $missing_content = "Please supply all information.";
-$email_invalid   = "Email Address Invalid.";
-$message_unsent  = "Message was not sent. Try Again.";
-$message_sent    = "Thanks! Your message has been sent.";
+$email_invalid   = "Adresse mail invalide.";
+$message_unsent  = "Le message n'a pas été envoyé, merci de réessayer.";
+$message_sent    = "Merci ! Votre message a bien été envoyé.";
 
 //user posted variables
+$simulationValues = [];
+if(isset($_POST) && $_POST['simualtion']){
+    foreach($_POST['simualtion'] as $k => $v){
+        $simulationValues[$k] = esc_attr($v);
+    }
+}
 
-
-
-
-$name     = isset($_POST['message_name'] ) ? esc_attr($_POST['message_name']) : null;
-$email    = isset($_POST['message_email']) ? esc_attr($_POST['message_email']) : null;
-$message  = isset($_POST['message_text'] ) ? esc_attr($_POST['message_text']) : null;
-$human    = isset($_POST['message_human']) ? esc_attr($_POST['message_human']) : null;
 
 //php mailer variables
 $to = get_option('admin_email');
-$subject = "Someone sent a message from ".get_bloginfo('name');
-$headers = 'From: '. $email . "\r\n" .
-    'Reply-To: ' . $email . "\r\n";
+$subject = "Vous avez recu une demande de simulatin de  ".get_bloginfo('name');
+$headers = 'From: '. $simulationValues['message_email'] . "\r\n" .
+    'Reply-To: ' . $simulationValues['message_email'] . "\r\n";
 
 
-
-if(!$human == 0){
-    if($human != 2) my_contact_form_generate_response("error", $not_human); //not human!
+if(!$simulationValues['message_human'] == 0){
+    if($simulationValues['message_human'] != 2) my_contact_form_generate_response("error", $not_human); //not human!
     else {
 
         //validate email
-        if(!filter_var($email, FILTER_VALIDATE_EMAIL))
+        if(!filter_var($simulationValues['message_email'], FILTER_VALIDATE_EMAIL))
             my_contact_form_generate_response("error", $email_invalid);
         else //email is valid
         {
             //validate presence of name and message
-            if(empty($name) || empty($message)){
+            if(empty($simulationValues['message_name']) || empty($simulationValues['message_text'])){
                 my_contact_form_generate_response("error", $missing_content);
             }
-            else //ready to go!
+            else
             {
-                $sent = wp_mail($to, $subject, strip_tags($message), $headers);
+                $sent = wp_mail($to, $subject, strip_tags($simulationValues['message_text']), $headers);
                 if($sent) my_contact_form_generate_response("success", $message_sent); //message sent!
                 else my_contact_form_generate_response("error", $message_unsent); //message wasn't sent
 
@@ -90,40 +91,88 @@ else if (isset($_POST['submitted'])  && $_POST['submitted']) my_contact_form_gen
                             <form action="<?php the_permalink(); ?>" method="post" id="simulation-form">
                                 <div id="respond">
 
-                                    <div class="panel-wrapper active">
-                                        <h3 class="question-panel-header">info perso</h3>
-                                        <div class="question-panel panel-1">
-                                            <p><label for="name">Name: <span>*</span> <br>
-                                                    <input type="text" name="message_name" required minlength="3"
-                                                           value="<?= $name ?>"></label>
-                                            </p>
-                                            <p><label for="message_email">Email: <span>*</span>
-                                                    <input type="email" required
-                                                           name="message_email"
-                                                           value="<?= $email; ?>"></label>
-                                            </p>
-                                            <button class="valider panel-1" disabled="true" data-panel="1">valider</button>
+                                    <div class="panel-wrapper active panel-1">
+                                        <h3 class="question-panel-header">Vos informations</h3>
+                                        <div class="question-panel ">
+                                            <div class="col-md-6 form-group">
+                                                <label for="simualtion[message_name]">Nom <span>*</span> </label>
+                                                <input type="text" name="simualtion[message_name]" required
+                                                       minlength="3"
+                                                       value="<?= $simulationValues['message_name'] ?>">
+                                            </div>
+                                            <div class="col-md-6 form-group">
+                                                <label for="simualtion[message_firstname]">Prenom</label>
+                                                <input type="text" name="simualtion[message_firstname]" minlength="3"
+                                                       value="<?= $simulationValues['message_firstname'] ?>">
+                                            </div>
+                                            <div class="col-md-6 form-group">
+                                                <label for="simualtion[message_phone]">Téléphone <span>*</span></label>
+                                                <input type="text" name="simualtion[message_phone]" required
+                                                       minlength="10"
+                                                       value="<?= $simulationValues['message_phone'] ?>">
+                                            </div>
+                                            <div class="col-md-6 form-group">
+                                                <label for="simualtion[message_email]">Email <span>*</span></label>
+                                                <input type="email" required name="simualtion[message_email]"
+                                                       value="<?= $simulationValues['message_email']; ?>">
+                                            </div>
+
+                                                <button class="valider btn btn-default" disabled="true" data-target="2">
+                                                    valider
+                                                </button>
+
                                         </div>
                                     </div>
-                                    <div class="panel-wrapper not-active">
-                                        <h3 class="question-panel-header">autres infos </h3>
-                                        <div class="question-panel panel-2">
-                                            <p><label for="message_text">Message: <span>*</span><br>
-                                                    <textarea
-                                                        type="text"
-                                                        name="message_text"><?= $message ; ?></textarea>
-                                                </label>
-                                            </p>
-                                            <button class="valider panel-2" disabled="true" data-panel="2">valider</button>
+
+                                    <div class="panel-wrapper active panel-2">
+                                        <h3 class="question-panel-header">Montant & moyen </h3>
+                                        <div class="question-panel ">
+
+                                            <div class="col-md-12">
+                                                <h5 for="simualtion[montant]">Montant ou effort d'épargne mensuel <span>*</span></h5>
+                                                    <input required type="number" min="10000" value="<?= $simulationValues['montant'] ?>"
+                                                        name="simualtion[montant]" />
+
+                                            </div>
+                                            <div class="col-md-12 ">
+                                                <h5> Moyen d'investissement </h5>
+                                                <div class="form-group">
+                                                    <div>
+                                                        <label for="simualtion[moyen_cash]">cash <span>*</span></label>
+                                                        <input required type="radio" name="simualtion[moyen_cash]" />
+                                                    </div>
+                                                    <div>
+                                                        <label for="simualtion[moyen_credit]">credit <span>*</span></label>
+                                                        <input required type="radio" name="simualtion[moyen_credit]" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12  ">
+                                                <label for="simualtion[duree]">durée <span>*</span></label><br>
+                                                <input required type="number" value="<?= $simulationValues['duree'] ?>" name="simualtion[duree]" />
+                                            </div>
+
+                                            <button class="valider  btn btn-default" disabled="true" data-target="3">valider</button>
                                         </div>
                                     </div>
-                                    <div class="panel-wrapper not-active">
-                                        <h3 class="question-panel-header">encore d'autres infos </h3>
-                                        <div class="question-panel panel-3">
-                                            <p><label for="message_human">Human Verification: <span>*</span><br><input
-                                                        type="text" style="width: 60px;" name="message_human"> + 3 =
-                                                    5</label></p>
-                                            <p><input type="submit"/></p>
+
+                                    <div class="panel-wrapper active panel-3">
+                                        <h3 class="question-panel-header">Votre situation</h3>
+                                        <div class="question-panel">
+                                            <div class="col-md-6">
+                                                <label>célibataire <input type="radio" required name="simualtion[situation_celib]" ></label><br>
+                                                <label>marié-pacsé  <input type="radio" required name="simualtion[situation_marie]" ></label><br>
+                                            </div>
+
+                                            <div class="col-md-6"><label for="message_human">nombre de parts fiscales <span>*</span></label><br>
+                                                <input type="number" name="simualtion[nb_part_fiscales]"></div>
+
+                                            <div class="col-md-6"><label for="message_human">revenus du foyer <span>*</span></label><br>
+                                                <input  type="number"  name="simualtion[revenu_foyer]"></div>
+
+                                            <div class="col-md-12"><input type="submit"/></div>
+
                                         </div>
                                     </div>
                                 </div>
