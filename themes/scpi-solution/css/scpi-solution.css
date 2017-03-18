@@ -50,11 +50,22 @@ form span{
 	height: 50px;
 	font-size: 30px;
 	color: white;
+	margin: 2em 40%;
 }
+#respond button.send-simul{
+	width: 100%;
+	margin: 2em 0;
+	padding: 1em;
+	height: auto;
+}
+
+
 #respond button[disabled]{
+	margin: 2em 40%;
 	background-color: rgba(199, 175, 40, 0.59);
 	color: rgba(255, 255, 255, 0.44);
 }
+
 
 .active .question-panel{
 	display: block;
@@ -76,7 +87,7 @@ form span{
 }
 
 .panel-2 .question-panel input[type="number"]{
-	width: 50%;
+	width: 30%;
 
 }
 .panel-2 .question-panel label{
@@ -88,4 +99,11 @@ form span{
 	display: inline-block;
 	float: left;
 	width: 30%;
+}
+
+.ligne-form-simulation{
+	line-height: 3em;
+}
+.ligne-form-simulation label{
+	min-width: 10em;
 }

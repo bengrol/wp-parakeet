@@ -6,7 +6,7 @@ $panel.find('input').each(function (index) {
     $(this).addClass('pristine');
 });
 
-console.debug('DEBUG', $panel);
+//console.debug('DEBUG', $panel);
 
 jQuery.extend(jQuery.validator.messages,{required: "Ce champs est requis .",
   email: "Merci de renseigner une adresse mail valide",
@@ -60,6 +60,21 @@ $(".question-panel-header").click(function(){
         $(this).next().slideToggle();
 	}
 });
+
+
+$('.simualtion-invest-moyen').click(function(){
+
+var $input = $('.simualtion-credit-duree input');
+// console.debug(' input =  ', $input);
+
+
+    if($(this).hasClass('credit')){
+        $('.simualtion-credit-duree').show();
+    }else{
+        $('.simualtion-credit-duree').hide();
+    }
+});
+
 
 
 $(".valider").click(function(e){

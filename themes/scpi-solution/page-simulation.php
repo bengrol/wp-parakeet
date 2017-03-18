@@ -33,39 +33,53 @@ if(isset($_POST) && $_POST['simualtion']){
 }
 
 
+
 //php mailer variables
-$to = get_option('admin_email');
-$subject = "Vous avez recu une demande de simulatin de  ".get_bloginfo('name');
+$Bcc = get_option('admin_email');
+$user_info = get_userdata(3);
+$to = $user_info->user_email;
+
+$subject = "Demande de simulation de  ".get_bloginfo('name');
 $headers = 'From: '. $simulationValues['message_email'] . "\r\n" .
+    'Bcc:'.$Bcc."\r\n" .
     'Reply-To: ' . $simulationValues['message_email'] . "\r\n";
 
+$corp_du_message = "Mr/Mm ".$simulationValues['message_name']." ".$simulationValues['message_firstname']."\n".
+                    "souhaite etre recontacté(e) pour une simulation sur la base des éléments suivant : \n".
+                    "\n\n".
+                    "Investissement : \n".
+                    "Montant : ".$simulationValues['montant']." euros \n".
+                    "Moyen   : ".$simulationValues['moyen_invest']." \n".
+                     "Durée   : ".$simulationValues['duree']." an(s) \n".
+                    "\n\n".
+                    "Sa situtation est la suivante : \n".
+                    "Relation : ".$simulationValues['situation_fam']." \n".
+                    "Nombre de part fiscales : ".$simulationValues['nb_part_fiscales']." \n".
+                    "Revenu annuel: ".$simulationValues['revenu_foyer']. " euros/an".
+                    "\n\n".
+                    "Ses coordonnées : \n".
+                    " Telephone : ".$simulationValues['message_phone'].
+                    " Mail : ".$simulationValues['message_email'];
 
-if(!$simulationValues['message_human'] == 0){
-    if($simulationValues['message_human'] != 2) my_contact_form_generate_response("error", $not_human); //not human!
-    else {
-
-        //validate email
-        if(!filter_var($simulationValues['message_email'], FILTER_VALIDATE_EMAIL))
-            my_contact_form_generate_response("error", $email_invalid);
-        else //email is valid
-        {
-            //validate presence of name and message
-            if(empty($simulationValues['message_name']) || empty($simulationValues['message_text'])){
-                my_contact_form_generate_response("error", $missing_content);
-            }
-            else
-            {
-                $sent = wp_mail($to, $subject, strip_tags($simulationValues['message_text']), $headers);
-                if($sent) my_contact_form_generate_response("success", $message_sent); //message sent!
-                else my_contact_form_generate_response("error", $message_unsent); //message wasn't sent
-
-            }
+    //validate email
+    if(!filter_var($simulationValues['message_email'], FILTER_VALIDATE_EMAIL)){
+        my_contact_form_generate_response("error", $email_invalid);
+    } else {
+        //validate presence of name and message
+        if(empty($simulationValues['message_name']) ){
+            my_contact_form_generate_response("error", $missing_content);
         }
-
-
+        else {
+           $sent = wp_mail($to, $subject, strip_tags($corp_du_message), $headers);
+            if($sent) my_contact_form_generate_response("success", $message_sent); //message sent!
+            else my_contact_form_generate_response("error", $message_unsent); //message wasn't sent
+        }
     }
-}
-else if (isset($_POST['submitted'])  && $_POST['submitted']) my_contact_form_generate_response("error", $missing_content);
+
+
+
+
+///if (isset($_POST['submitted'])  && $_POST['submitted']) my_contact_form_generate_response("error", $missing_content);
 
 
 ?>
@@ -80,11 +94,11 @@ else if (isset($_POST['submitted'])  && $_POST['submitted']) my_contact_form_gen
                 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
                     <header class="entry-header">
-                        <h1 class="entry-title"><?php the_title(); ?></h1>
+                        <h1 class="entry-title"><?php //the_title(); ?> Votre Simulation gratuite</h1>
                     </header>
 
                     <div class="entry-content">
-                        <?php //the_content(); ?>
+                        <?php the_content(); ?>
 
                             <?php echo $response; ?>
 
@@ -124,54 +138,66 @@ else if (isset($_POST['submitted'])  && $_POST['submitted']) my_contact_form_gen
                                         </div>
                                     </div>
 
-                                    <div class="panel-wrapper active panel-2">
+                                    <div class="panel-wrapper not-active panel-2">
                                         <h3 class="question-panel-header">Montant & moyen </h3>
                                         <div class="question-panel ">
 
                                             <div class="col-md-12">
-                                                <h5 for="simualtion[montant]">Montant ou effort d'épargne mensuel <span>*</span></h5>
+                                                <label for="simualtion[montant]">Quel montant ou effort d'épargne mensuel pensez vous investir ?<span>*</span></label>
                                                     <input required type="number" min="10000" value="<?= $simulationValues['montant'] ?>"
-                                                        name="simualtion[montant]" />
+                                                        name="simualtion[montant]" /> Euros
 
                                             </div>
+
                                             <div class="col-md-12 ">
-                                                <h5> Moyen d'investissement </h5>
                                                 <div class="form-group">
-                                                    <div>
-                                                        <label for="simualtion[moyen_cash]">cash <span>*</span></label>
-                                                        <input required type="radio" name="simualtion[moyen_cash]" />
+                                                    <label>Comment pensez vous investir ?</label>
+
+                                                    <div class="ligne-form-simulation">
+                                                        <label for="simualtion[moyen_invest]">Cash <span>*</span></label>
+                                                        <input required type="radio" value="cash" name="simualtion[moyen_invest]" class="simualtion-invest-moyen cash"/>
                                                     </div>
-                                                    <div>
-                                                        <label for="simualtion[moyen_credit]">credit <span>*</span></label>
-                                                        <input required type="radio" name="simualtion[moyen_credit]" />
+                                                    <div class="ligne-form-simulation">
+                                                        <label for="simualtion[moyen_invest]">Crédit <span>*</span></label>
+                                                        <input required type="radio" value="credit" name="simualtion[moyen_invest]" class="simualtion-invest-moyen credit"/>
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-12  ">
-                                                <label for="simualtion[duree]">durée <span>*</span></label><br>
-                                                <input required type="number" value="<?= $simulationValues['duree'] ?>" name="simualtion[duree]" />
+                                            <div class="col-md-12 simualtion-credit-duree" style="display: none">
+                                                <label for="simualtion[duree]">Durée </label><br>
+                                                <input type="number" min="0" value="<?= $simulationValues['duree'] ?>" name="simualtion[duree]" /> an(s)
                                             </div>
 
                                             <button class="valider  btn btn-default" disabled="true" data-target="3">valider</button>
                                         </div>
                                     </div>
 
-                                    <div class="panel-wrapper active panel-3">
+                                    <div class="panel-wrapper not-active panel-3">
                                         <h3 class="question-panel-header">Votre situation</h3>
                                         <div class="question-panel">
-                                            <div class="col-md-6">
-                                                <label>célibataire <input type="radio" required name="simualtion[situation_celib]" ></label><br>
-                                                <label>marié-pacsé  <input type="radio" required name="simualtion[situation_marie]" ></label><br>
+                                            <h5>Nous souhaiterions également connaitre votre situation fiscale pour vous
+                                                proposer le produit le plus personnalisé</h5>
+                                            <div class="col-md-12">
+                                                <div class="ligne-form-simulation">
+                                                    <label>Célibataire </label><input type="radio" value="celibataire" required name="simualtion[situation_fam]" >
+                                                </div>
+                                                <div class="ligne-form-simulation">
+                                                    <label>Marié-Pacsé </label><input type="radio" value="marie/pacse" required name="simualtion[situation_fam]" >
+                                                </div>
+
+
                                             </div>
 
-                                            <div class="col-md-6"><label for="message_human">nombre de parts fiscales <span>*</span></label><br>
-                                                <input type="number" name="simualtion[nb_part_fiscales]"></div>
+                                            <div class="col-md-12 ligne-form-simulation"><label for="message_human">nombre de parts fiscales <span>*</span></label><br>
+                                                <input type="number" step="0.5" name="simualtion[nb_part_fiscales]"></div>
 
-                                            <div class="col-md-6"><label for="message_human">revenus du foyer <span>*</span></label><br>
+                                            <div class="col-md-12 ligne-form-simulation"><label for="message_human">revenus du foyer <span>*</span></label><br>
                                                 <input  type="number"  name="simualtion[revenu_foyer]"></div>
 
-                                            <div class="col-md-12"><input type="submit"/></div>
+                                            <div class="col-md-12 ligne-form-simulation">
+                                                <button class="btn btn-default btn-lg send-simul" form="simulation-form" type="submit">
+                                                    Recevoir Ma Simulation GRATUITE</button></div>
 
                                         </div>
                                     </div>
