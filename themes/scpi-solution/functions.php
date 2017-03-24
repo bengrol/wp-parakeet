@@ -10,18 +10,17 @@ require_once('scpi_functions/ajaxForm.php');
 #-----------------------------------------------------------------
 	add_action('init',	function () {
 
-
-		wp_enqueue_script('scpi-custom', STYLE_WEB_ROOT."/javascripts/scpi.js",array('jquery', ),null, true);
-		wp_enqueue_script('ajax-form', STYLE_WEB_ROOT."/javascripts/ajaxForm.js",array('jquery', ),'1.0', true);
+    wp_enqueue_script('jquery-validation', STYLE_WEB_ROOT."/javascripts/jquery.validate.min.js",
+      array('jquery' ),'1.16.0', true);
+		wp_enqueue_script('scpi-custom', STYLE_WEB_ROOT."/javascripts/scpi.js",array('jquery','jquery-validation' ),null, true);
+		wp_enqueue_script('ajax-form', STYLE_WEB_ROOT."/javascripts/ajaxForm.js",array('jquery','jquery-validation' ),'1.0', true);
 
 // pass Ajax Url to script.js
     wp_localize_script('ajax-form', 'ajaxurl', admin_url( 'admin-ajax.php' ) );
 
 
-		wp_enqueue_script('jquery-validation', STYLE_WEB_ROOT."/javascripts/jquery.validate.min.js",
-            array('jquery' ),'1.16.0', true);
-		wp_enqueue_script('scpi-custom', STYLE_WEB_ROOT."/javascripts/scpi.js",
-            array('jquery', ),null, true);
+
+
 
 
 

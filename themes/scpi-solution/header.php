@@ -251,5 +251,5 @@ $theme_options = get_option('option_tree');?>
 	<div class="clear"></div>
 
 
-
+<div id="messageBox">messagebox</div>
       <?php  echo scpi_form_content();?>

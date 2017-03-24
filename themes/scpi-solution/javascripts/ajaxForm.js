@@ -1,24 +1,70 @@
 (function($){
 
+/*
+  first_name :{},
+  last_name :{},
+  mail :{},
+  tel :{},
+  zip_code :{},
+  date_naissance :{},
+  situation :{},
+  montant :{},
+  obj :{},
+  renom :{},
+*/
+
 
   var rules = {
-    name: {
+    first_name :{
       required: true,
       minlength: 5,
       maxlength: 20,
-      lettersonly: true
     },
-   email: {
+    last_name :{},
+    mail :{
       required: true,
       minlength: 6,
       email: true
-    }
+    },
+    tel :{},
+    zip_code :{},
+    date_naissance :{},
+    situation :{},
+    montant :{},
+    obj :{},
+    renom :{},
+
+
+  };
+  var messages = {
+    first_name :{
+      required:'Merci de renseigner vite ce champ',
+    },
+    last_name :{},
+    mail :{},
+    tel :{},
+    zip_code :{},
+    date_naissance :{},
+    situation :{},
+    montant :{},
+    obj :{},
+    renom :{},
   };
 
 
 
   $('#scpiajaxform').validate({
+  errorLabelContainer: "#messageBox",
+
+    // showErrors: function(errorMap, errorList) {
+    //   $("#messageBox").html("Your form contains "
+    //     + this.numberOfInvalids()
+    //     + " errors, see details below.");
+    //   this.defaultShowErrors();
+    // },
+
     rules:rules,
+    messages:messages,
     submitHandler:function(form){
 
 
