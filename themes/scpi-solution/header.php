@@ -250,3 +250,7 @@ $theme_options = get_option('option_tree');?>
 		</div>
 	
 	<div class="clear"></div>
+
+
+
+      <?php  echo scpi_form_content();?>
