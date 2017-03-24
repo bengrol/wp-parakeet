@@ -1,7 +1,12 @@
 (function($){	
 
-var $panel =$('#respond .question-panel input');
+var $panel =$('#respond').find('.question-panel');
+    
+$panel.find('input').each(function (index) {
+    $(this).addClass('pristine');
+});
 
+//console.debug('DEBUG', $panel);
 
 jQuery.extend(jQuery.validator.messages,{required: "Ce champs est requis .",
   email: "Merci de renseigner une adresse mail valide",
@@ -20,34 +25,67 @@ jQuery.extend(jQuery.validator.messages,{required: "Ce champs est requis .",
 var validator = $('#simulation-form').validate();
 
 $panel.each(function(){
-var	$panel = $(this).parents('.question-panel');
-var $button = $panel.find('button');
 
-    $(this).change(function(){
-			let index = 0;
-			let lenght = $panel.find('input').length;
+	var inputs =$(this).find('input');
+    var $button = $(this).find('button');
+    inputs.on('click',function(e){
+        $(this).removeClass('pristine');
+    });
 
-			$panel.find('input').each(function(k,e){
-				if($(e).val() !== '' && validator.element( e ) ){
-					index += 1;
-				}
-			})
+    inputs.on('focusout',function(e){
 
-			$button.prop('disabled', index === lenght ? false : true);
+		var lenght = inputs.filter('[required]').length;
+		var index = 0;
+
+        inputs.each(function(k,e){
+        	if( !$(e).hasClass('pristine') && $(e).attr('required') || $(e).val() !== ''){
+        		console.debug('debug required or not empty ', e);
+
+                if( validator.element( e ) && $(e).attr('required') ){
+                    index += 1;
+                }
+			}
+
 		})
+
+        $button.prop('disabled', index === lenght ? false : true);
+	})
+
+
 })
 
 
 $(".question-panel-header").click(function(){
-	$(this).next().slideToggle();
+	if($(this).parent().hasClass( "active" )){
+        $(this).next().slideToggle();
+	}
 });
+
+
+$('.simualtion-invest-moyen').click(function(){
+
+var $input = $('.simualtion-credit-duree input');
+// console.debug(' input =  ', $input);
+
+
+    if($(this).hasClass('credit')){
+        $('.simualtion-credit-duree').show();
+    }else{
+        $('.simualtion-credit-duree').hide();
+    }
+});
+
 
 
 $(".valider").click(function(e){
 	e.preventDefault();
-	console.log($(this).attr('data-panel'));
+	var target = $(this).attr('data-target');
+	$('.panel-'+target).addClass('active').removeClass('not-active');
 
-	//$(this).next().slideToggle();
+	$('.panel-'+(target-1)).find('.question-panel').slideToggle();
+
+
+	$(this).next().slideToggle();
 });
 
 

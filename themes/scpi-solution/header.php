@@ -186,8 +186,7 @@ $theme_options = get_option('option_tree');?>
                     <!-- Tagline -->		
 					<?php if(isset($theme_options['top_header_tagline'])) : ?>
 				                     
-                 <img id="picto-phone" src="<?=STYLE_WEB_ROOT?>/assets/phone-32.png"/>
-                    <span class="top-header-tagline"> 
+                    <span class="top-header-tagline">
                         <?php echo stripslashes($theme_options['top_header_tagline']); ?>
                     </span><!-- Top Header Tagline -->					
             		
