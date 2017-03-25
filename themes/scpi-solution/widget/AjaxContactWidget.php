@@ -1,16 +1,16 @@
 <?php
 
-class My_Widget extends WP_Widget {
+class AjaxContactWidget extends WP_Widget {
 
 	/**
 	 * Sets up the widgets name etc
 	 */
 	public function __construct() {
 		$widget_ops = array( 
-			'classname' => 'my_widget',
-			'description' => 'My Widget is awesome',
+			'classname' => 'AjaxContactWidget',
+			'description' => 'SCPI - Formulaire de contact en ajax',
 		);
-		parent::__construct( 'my_widget', 'My Widget', $widget_ops );
+		parent::__construct( 'AjaxContactWidget', 'SCPI-ContactForm', $widget_ops );
 	}
 
 	/**
@@ -21,7 +21,7 @@ class My_Widget extends WP_Widget {
 	 */
 	public function widget( $args, $instance ) {
 		// outputs the content of the widget
-         echo scpi_form_content();
+        echo scpi_form_content();
 	}
 
 	/**
@@ -31,6 +31,7 @@ class My_Widget extends WP_Widget {
 	 */
 	public function form( $instance ) {
 		// outputs the options form on admin
+
 	}
 
 	/**

@@ -8,17 +8,21 @@ $theme_options = get_option('option_tree');
 $footerwidgets = is_active_sidebar('first-footer-widget-area') + is_active_sidebar('second-footer-widget-area') + is_active_sidebar('third-footer-widget-area') + is_active_sidebar('fourth-footer-widget-area');
 $class = ($footerwidgets == '0' ? 'noborder' : 'normal'); ?>
 
-<footer id="footer-wrap" class="fluid clearfix">
-	<div class="container">
-			<div id="footer" class="<?php echo $class; ?> sixteen columns"> 
+    <footer id="footer-wrap" class="fluid clearfix">
+        <div class="container">
+            <div id="footer" class="<?php echo $class; ?> sixteen columns">
 
-			<?php //loads sidebar-footer.php
-				get_sidebar( 'footer' );
-			?>
-			</div><!--/#footer-->
-           	
-    </div><!--/.container-->
-</footer><!--/#footer-wrap-->
+                <?php //loads sidebar-footer.php
+                get_sidebar( 'footer' );
+                ?>
+            </div><!--/#footer-->
+
+            <div id="footer-certif" class=" sixteen columns">
+                <?php  __scpi_get_certif(); ?>
+            </div>
+
+        </div><!--/.container-->
+    </footer><!--/#footer-wrap-->
             
 			<div id="sub-footer-wrap" class="clearfix">
 				<div class="container">

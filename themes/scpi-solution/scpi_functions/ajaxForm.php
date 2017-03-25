@@ -20,16 +20,25 @@ function scpi_ajax_function() {
 function scpi_ajax_sendmail($data){
   $to = get_option('admin_email');
   $subject = "Un contact du formulaire rapide ".get_bloginfo('name');
-  $headers = 'From: '. $data['mail'] . "\r\n" .
-    'Reply-To: ' . $data['mail'] . "\r\n";
+  $data['mail'] = str_replace("%40","@",$data['mail']);
 
-//  $sent = wp_mail($to, $subject, strip_tags($message), $headers);
+  $messageRetour = "";
 
 
-//  if($sent){
-//    return 'Votre mail a bien été envoyé';
-//  }
-  return 'un pb est survenu lors de l\'envoi de votre mail FAKE'.$data['mail'];
+    if(filter_var($data['mail'], FILTER_VALIDATE_EMAIL)){
+
+        $headers = 'From: '. $data['mail'] . "\r\n" .
+            'Reply-To: ' . $data['mail'] . "\r\n";
+
+        $message = scpi_create_body($data);
+        $sent = wp_mail($to, $subject, strip_tags($message), $headers);
+        $messageRetour = 'un pb est survenu lors de l\'envoi de votre mail';
+
+        if($sent){
+            $messageRetour = 'Votre mail a bien été envoyé';
+        }
+    }
+    return $messageRetour;
 }
 
 function scpi_form_content() {
@@ -37,7 +46,7 @@ function scpi_form_content() {
   $champs = scpi_form_listinput();
 
 
-  $html =" <form id='scpiajaxform'>";
+  $html =" <div id=\"messageBox\"></div><form id='scpiajaxform'>";
 
   foreach ($champs as $champ){
     if('textarea' === $champ['type']){
@@ -68,5 +77,32 @@ function scpi_form_listinput(){
     array('type'=>'text', 'name'=>'obj', 'label'=>'objectif' ),
     array('type'=>'textarea', 'name'=>'renom', 'label'=>'Comment nous avez vous connu ?' ),
   );
+
+}
+
+function scpi_create_body($data){
+    $body = " Prise de contact formulaire \n\n ";
+
+    $list_input = array(
+        'first_name'=>'Prenom',
+        'last_name' =>'Nom',
+        'mail'=>'mail',
+        'tel'=>'téléphone',
+        'zip_code'=>'code postal',
+        'date_naissance'=>'date de naissance',
+        'situation'=>'situation familiale',
+        'montant'=>'montant investissement',
+        'obj'=>'objectif',
+        'renom'=>'Comment nous avez vous connu ?');
+
+
+    foreach ($data as $k => $row){
+        $label =  $list_input[$k];
+
+        $body .= "- ".$label." :  ".$row."\n";
+    }
+
+
+    return $body;
 
 }

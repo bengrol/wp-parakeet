@@ -3,6 +3,7 @@
 //define( 'STYLE_WEB_ROOT' , get_stylesheet_directory_uri() );
 require_once ( 'widget/widget.php' );
 require_once('scpi_functions/ajaxForm.php');
+require_once('scpi_functions/certif.php');
 
 
 #-----------------------------------------------------------------

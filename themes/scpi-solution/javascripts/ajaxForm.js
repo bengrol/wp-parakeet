@@ -76,7 +76,18 @@
           'ajax_param': stringToJson('#scpiajaxform')
         },
         function (response) {
-          $('#scpiajaxform').html(response);
+
+            $('#messageBox').toggle().html(response);
+
+            $('#scpiajaxform').toggle();
+
+            setTimeout(function(){
+                // toggle back after 1 second
+                $('#scpiajaxform').toggle();
+                $('#scpiajaxform')[0].reset();
+            },5000);
+
+
         }
       );
 
