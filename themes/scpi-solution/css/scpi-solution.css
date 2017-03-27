@@ -11,7 +11,7 @@
 	float: left;
 }
 .clear.fix-menu-clear{
-	height: 160px;
+	height: 200px;
 }
 .top-header-tagline{
 	font-size: 19px;
@@ -122,4 +122,32 @@ form span{
 }
 .ligne-form-simulation label{
 	min-width: 10em;
+}
+
+#scpiajaxform{
+	margin: 0 2em;
+}
+
+#scpiajaxform label{
+	color : #2577cc;
+	margin-top: 2em;
+	width: 100%;
+}
+#scpiajaxform textarea{
+	min-height: 105px;
+}
+
+#scpiajaxformbutton{
+	color: #2b75bf;
+	margin-top: 2em;
+	width: 100%;
+	padding: 1em;
+}
+
+h3.scpiajaxformwidget{
+	color : #2577cc;
+}
+
+#header{
+	padding: 10px 0 0 0;
 }

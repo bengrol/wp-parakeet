@@ -31,6 +31,7 @@ class My_Widget extends WP_Widget {
 	 */
 	public function form( $instance ) {
 		// outputs the options form on admin
+
 	}
 
 	/**

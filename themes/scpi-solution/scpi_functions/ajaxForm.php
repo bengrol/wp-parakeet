@@ -44,13 +44,22 @@ function scpi_ajax_sendmail($data){
 function scpi_form_content() {
 
   $champs = scpi_form_listinput();
+$title = "<h3 class='scpiajaxformwidget'>Contact rapide</h3>";
 
-
-  $html =" <div id=\"messageBox\"></div><form id='scpiajaxform'>";
+  $html =  $title."<div id=\"messageBox\"></div><form id='scpiajaxform'>";
 
   foreach ($champs as $champ){
     if('textarea' === $champ['type']){
       $html .= vsprintf("<label >%3\$s</label><textarea rows=\"4\" cols=\"10\" name='%2\$s'></textarea>", $champ );
+    }elseif ('select'=== $champ['type']){
+
+        $options="";
+        foreach ($champ['options'] as $option){
+            $options .= vsprintf("<option value='%1\$s' >%1\$s</option>", $option );
+        }
+
+        $html .= "<div ><label >".$champ['label']."</label><select >".$options."</select></div>";
+
     }
     else{
       $html .= vsprintf("<label >%3\$s</label><input name='%2\$s' type='%1\$s'  placeholder='%3\$s'/>", $champ );
@@ -72,10 +81,15 @@ function scpi_form_listinput(){
     array('type'=>'tel', 'name'=>'tel', 'label'=>'téléphone' ),
     array('type'=>'text', 'name'=>'zip_code', 'label'=>'code postal' ),
     array('type'=>'date', 'name'=>'date_naissance', 'label'=>'date de naissance' ),
-    array('type'=>'text', 'name'=>'situation', 'label'=>'situation familiale' ),
-    array('type'=>'text', 'name'=>'montant', 'label'=>'montant investissement' ),
-    array('type'=>'text', 'name'=>'obj', 'label'=>'objectif' ),
-    array('type'=>'textarea', 'name'=>'renom', 'label'=>'Comment nous avez vous connu ?' ),
+    array('type'=>'select', 'name'=>'situation', 'label'=>'situation familiale',
+        'options'=>array("célibataire","concubinage","divorcé","veuf", "marié", "pacs") ),
+    array('type'=>'select', 'name'=>'montant', 'label'=>'montant investissement',
+      'options'=>array("inférieur à 50 000", "50 000 à 100 000 euros", "100 000 à 150 000 euros", "plus de 150 000 euros") ),
+    array('type'=>'select', 'name'=>'obj', 'label'=>'objectif',
+        'options'=>array("optimiser ma fiscalité", "création de revenu", "préparer ma retraite", "préparer ma succession") ),
+    array('type'=>'select', 'name'=>'renom', 'label'=>'Comment nous avez-vous connu ?',
+        'options'=>array('...','moteur de recherche', 'article de presse', 'télévision', 'recommandation', 'autres')),
+    array('type'=>'textarea', 'name'=>'message', 'label'=>'Message' ),
   );
 
 }
@@ -93,7 +107,9 @@ function scpi_create_body($data){
         'situation'=>'situation familiale',
         'montant'=>'montant investissement',
         'obj'=>'objectif',
-        'renom'=>'Comment nous avez vous connu ?');
+        'renom'=>'Comment nous avez-vous connu ?',
+        'message'=>'Message'
+        );
 
 
     foreach ($data as $k => $row){
