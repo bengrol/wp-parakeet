@@ -123,3 +123,23 @@ form span{
 .ligne-form-simulation label{
 	min-width: 10em;
 }
+
+
+.scpi-table{
+
+}
+
+.scpi-heading-tab td{
+	background-color: #035b9f;
+	color: white;
+	font-weight: bold;
+	text-align: center;
+}
+
+.scpi-table td{
+	border: solid 1px black;
+}
+
+.scpi-table thead{
+	border: solid 2px black;
+}
