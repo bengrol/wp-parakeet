@@ -1,18 +1,11 @@
-.scpi-header{
-	position: fixed;
-	top : 0px;
-	z-index: 2;
-	width: 100%;
-}
+
 .scpi-header .header{
 	padding-top: 15px;
 }
 #footer-certif li{
 	float: left;
 }
-.clear.fix-menu-clear{
-	height: 200px;
-}
+
 .top-header-tagline{
 	font-size: 19px;
 	margin-right: 2em;
@@ -157,8 +150,12 @@ h3.scpiajaxformwidget{
 
 }
 
-.scpi-heading-tab td{
-	background-color: #035b9f;
+tr.scpi-heading-tab{
+	border: solid 3px black;
+}
+
+tr.scpi-heading-tab td{
+	background-color: #1a6aa8;
 	color: white;
 	font-weight: bold;
 	text-align: center;
@@ -171,3 +168,34 @@ h3.scpiajaxformwidget{
 .scpi-table thead{
 	border: solid 2px black;
 }
+
+tbody.scpi-body{
+	border: solid 3px black;
+}
+
+tbody.scpi-body tr:nth-child(even){
+	/*background-color: #1a6aa8;*/
+}
+tbody.scpi-body tr:nth-child(odd) td{
+	background-color: #e5e5e5;
+}
+tbody.scpi-body tr td:nth-child(3){
+	color: #5893bf;
+}
+
+
+@media only screen and (min-width: 959px) {
+	.scpi-header{
+		position: fixed;
+		top : 0px;
+		z-index: 2;
+		width: 100%;
+	}
+
+
+	.clear.fix-menu-clear{
+		height: 150px;
+	}
+
+}
+

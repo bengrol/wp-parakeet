@@ -9,7 +9,7 @@
 
 
 function __scpi_get_certif(){
-    $certif_list = ['amf.jpg','amlin.jpg','anacofi.jpg', 'anacofi-cif.jpg','cnil.jpg', 'orias.jpg'];
+    $certif_list = ['amf.jpg','amlin.jpg','anacofi.jpg', 'anacofi-cif.jpg','cnil.jpg', 'orias.jpg', 'economie_finances.jpg'];
     $path = STYLE_WEB_ROOT.'/assets/logos-certif/';
     $html = '<ul>';
     foreach ($certif_list as $certif){

@@ -41,10 +41,17 @@ function scpi_ajax_sendmail($data){
     return $messageRetour;
 }
 
-function scpi_form_content() {
+function scpi_form_content($title_content = false) {
 
-  $champs = scpi_form_listinput();
-$title = "<h3 class='scpiajaxformwidget'>Contact rapide</h3>";
+    if(!$title_content ){
+        $title_content_list = array('contactez nos experts',
+            'besoin d’un conseil, plus d’informations ? contactez nous',
+            'vous souhaitez souscrire', 'profitez de notre offre');
+        $title_content = $title_content_list[rand(0,3)];
+    }
+
+    $champs = scpi_form_listinput();
+    $title = "<h3 class='scpiajaxformwidget'>".$title_content."</h3>";
 
   $html =  $title."<div id=\"messageBox\"></div><form id='scpiajaxform'>";
 
@@ -122,3 +129,11 @@ function scpi_create_body($data){
     return $body;
 
 }
+
+function scpi_form_shortcode( $arg ){
+    $title_content = shortcode_atts( array(
+        'title' => false
+    ), $arg );
+    return scpi_form_content($title_content['title']);
+}
+add_shortcode( 'scpi_ajax_form', 'scpi_form_shortcode' );
