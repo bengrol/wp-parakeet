@@ -184,6 +184,34 @@ tbody.scpi-body tr td:nth-child(3){
 }
 
 
+#chart-animation ul{
+	list-style: none;
+}
+#chart-animation li{
+	padding: 1em 0;
+}
+
+span.chart-title {
+	display: inline-block;
+	width: 100%;
+}
+span.chart-container{
+	display: inline-block;
+	width: 100%;
+	background-color: #efefef;
+}
+span.chart-amount{
+	display: inline-block;
+	background-color: #035b9f;
+	opacity: 0.3;
+	text-align: right;
+	color: white;
+	padding: 5px 15px;
+	height: 2.2em;
+}
+
+
+
 @media only screen and (min-width: 959px) {
 	.scpi-header{
 		position: fixed;

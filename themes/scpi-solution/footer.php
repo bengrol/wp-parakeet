@@ -38,7 +38,8 @@ $class = ($footerwidgets == '0' ? 'noborder' : 'normal'); ?>
                         <?php echo get_option_tree('site_copyright'); ?>		
                     
                     <?php } ?>
-                    
+
+                    <p><a href="/">Site déclaré à la CNIL sous le numéro 2047631</a></p>
                 </div>
      			
 				<?php 

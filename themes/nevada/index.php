@@ -30,6 +30,7 @@ if($meta_sidebar != UT_THEME_INITIAL.'sidebar_none') {
 	
 }
 
+
 //the content loop
 get_template_part( 'loop', 'index' );
 

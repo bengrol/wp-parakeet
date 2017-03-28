@@ -90,5 +90,21 @@ $(".valider").click(function(e){
 
 
 
+// animation chart //
+    $("#chart-animation").mouseenter(function() {
+        var li = $(this).find('.chart-amount');
+        li.each(function(){
+            $(this).animate({
+                opacity: '1',
+                width: $(this).data('amount') + "%"
+            }, 1100);
+        })
+
+
+    });
+
+
+
+
 
 })(jQuery);
