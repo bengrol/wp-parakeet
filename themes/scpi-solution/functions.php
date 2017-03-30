@@ -5,6 +5,7 @@ require_once ( 'widget/widget.php' );
 require_once('scpi_functions/ajaxForm.php');
 require_once('scpi_functions/certif.php');
 require_once('scpi_functions/animation-chart.php');
+require_once('scpi_functions/simulation.php');
 
 
 #-----------------------------------------------------------------
