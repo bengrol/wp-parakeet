@@ -1,0 +1,165 @@
+@import "_variables.scss";
+
+
+.dpDiv{
+    visibility: visible;
+    position: absolute;
+    left: 66%;
+    top: 32%;
+    width: 33%;
+    height: 60%;
+    display: block;
+    z-index: 10000;
+    
+    
+    
+}
+
+
+.dpTable {
+	font-size: 14px;
+	text-align: center;
+	color: darken($bleu-tx-artemise, 20%);
+	background-color: $gris-pr-artemise;
+	
+        width: 100%; height: 100%;
+        
+        @include border-top-radius(5px);
+    @include border-bottom-radius(5px);
+        
+	}
+
+        
+        
+.hoverTD{
+    background-color: darken($bleu-tx-artemise, 20%);
+    cursor: pointer;
+    color: white;      
+
+}   
+
+.dpTD {
+	border: 1px solid #ece9d8;
+}
+
+.dpTD:Hover {
+    @extend .hoverTD;
+}
+  
+   
+.buttonStyle{
+    background-color: $gris-btn-artemise;
+    border: 1px solid darken($gris-btn-artemise, 25%);
+    color: white;
+    
+}
+.buttonStyleHover{
+    background-color: darken($gris-btn-artemise, 25%);
+    border: 1px solid darken($gris-btn-artemise, 45%);
+    color: white;
+    
+}
+.dpDayHighlightTD {
+    @extend .buttonStyle;
+    border: none ; 
+
+}
+.dpDayHighlightTD:hover{
+    @extend .hoverTD;
+}
+        
+
+.dpDayTD {
+@extend .buttonStyle;	
+        width: (100%/7);
+	}
+.dpTitleText {
+	font-size: 17px;
+	color: gray;
+	font-weight: bold;
+	}
+.dpDayHighlight {
+	color: #000;
+	font-weight: bold;
+	}
+        
+.dpButton {
+    padding: 0px;
+    @extend .dpTodayButton;
+}
+
+.dpButton:hover {
+    @extend .buttonStyleHover;
+}
+
+
+
+.dpTodayButton {
+    @extend .buttonStyle;
+    width: 48%;
+font-size: 17px;
+font-weight: bold;
+}
+
+.dpTodayButton:hover{
+    @extend .buttonStyleHover;
+}
+        
+.resa-container{
+   display : none;
+    
+border-radius: 2px;
+  margin-top: 2px;
+    padding: 15px 10px;
+  background-color: #627D79;
+}
+.resa-toogle{
+    cursor:pointer;
+    
+}
+
+.img-calendar{
+    float: left; margin-right: 10px;
+    width:30px;
+}
+
+
+
+
+
+
+
+
+#formPicker {
+    
+    color: $gris-pr-artemise;
+    line-height: 2.6;
+    
+    input { 
+        border-style: solid;
+        background-color: $gris-pr-artemise;
+        color :$bleu-pr-artemise;
+        @include    border-top-radius(4px) ;
+        @include    border-bottom-radius(4px) ;
+    }
+    
+    select{
+        border-style: solid;
+        background-color: $gris-pr-artemise;
+        color : $bleu-pr-artemise;
+        width: 100%;
+        
+    }
+    
+    
+    /*
+    input[type=submit]:disabled {
+        background-color: rgb(135, 152, 149);
+        border : none;
+        
+    
+}*/
+}
+
+
+

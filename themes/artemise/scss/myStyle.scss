@@ -1,0 +1,676 @@
+@import "_variables.scss";
+@import "_reservation.scss";
+/*
+Theme Name: artemise
+Author: Quikto team
+Author URI: http://Quikto.fr
+Description: Theme Artemise 
+Version: 1.0
+Text Domain: artemise
+
+*/
+
+/* css wordpresse*/
+
+img.alignright { float: right; margin: 0 0 1em 1em; }
+img.alignleft { float: left; margin: 0 1em 1em 0; }
+img.aligncenter { display: block; margin-left: auto; margin-right: auto; }
+.alignright { float: right; }
+.alignleft { float: left; }
+.aligncenter { display: block; margin-left: auto; margin-right: auto; }
+
+/* css wordpresse fin*/
+
+
+html{
+    overflow-x: hidden;
+
+}
+
+
+.tripadvisor-container{
+
+    position: absolute;
+    top: 0;
+    right: -10%;
+    z-index: 100;
+    width: 90px;
+
+    cursor: pointer;
+    background-color: white;
+    border: solid 1px;
+    padding: 8px 5px;
+
+    @include transition-prop(width, 0.7s);
+
+    .tripadvisor{
+        width: 60px;      
+        height: auto;
+
+    }
+    &:hover{
+        width: 252px;
+
+    }
+    /*      div{
+              width: 240px;
+          }*/
+
+}
+
+.respon{
+    width: 50%;
+}
+
+.im-resp-float-r{
+    float : right;
+    width: 50%;
+}
+.im-resp-float-l{
+    float : left;
+    width: 50%;
+}
+
+body{
+    font:  $font-artemise;
+    overflow-x: hidden;
+    background-image: url('../images/bg.png');
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+header#main-header {
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    //overflow: hidden;
+    color: #fff; 
+
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 0.25em 0.5em;
+    @include border-radius(0 0 3px 3px);
+
+    left: 50px; 
+    width: 260px;
+
+
+
+}
+
+#main{
+    width : 100%;
+}
+
+
+#logo-container, #main-nav-container{
+    background-color : lighten($bleu-pr-artemise, 12%);
+
+    @include radial-gradient(circle at 50% 16% , lighten($bleu-pr-artemise, 12%) 0%, $bleu-pr-artemise 100%);
+
+}
+
+aside {
+    position: absolute;
+    z-index: 50;
+    top: 25px;
+    right: 10%;
+    overflow-y: auto;
+    width: 280px;
+    color: white;
+
+    div button{
+        display: block;
+    }
+}
+.upper{
+
+    text-transform: uppercase;
+}
+
+
+#content{
+
+
+
+    p{
+
+        color : $gris-tx-artemise;
+        font-size: 1.2em;
+
+
+    }
+    article{
+
+
+        section{
+            margin-bottom: 5%;
+        }
+    }
+
+}
+.content-area{
+
+    //min-height: 400px;
+}
+
+.titre-page, .sec-prix{
+    //color: #759590;
+    color: $bleu-pr-artemise;
+}
+.titre-page{
+    font-family: $font-artemise;
+    font-size: 3.4em;
+
+}
+
+section{
+    .chambre-list{
+        min-height: 500px;
+        font-family: $font-artemise;
+        font-size: 1.2em;
+    }
+
+    .bd-ch{
+        background-image: url('images/img-bandeau-ch-fl07.jpg');
+    }
+
+
+
+}
+
+#bandeau{
+    min-height: 320px; //230px
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    @include filter-blur( 2px);
+
+}
+
+
+
+
+#resa-container-close{
+    @extend .transition-color-2s;
+
+
+    &:hover, &:active{
+        color : $gris-tx-artemise;
+    }
+
+}
+
+
+
+#main-nav a:hover{ color: $bleu-tx-artemise; }
+
+.btn-grp-offres, .btn-grp-offres-resp{
+    a:hover, button:hover {
+        color: #000;
+
+    }
+
+    a,  button{
+
+        display: block;
+        padding: .75em 1em;
+        text-align: center;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        @extend .transition-color-2s;
+        color: white;
+        width: 100%;
+        background-color: rgb(214, 47, 0);
+    }
+
+    a.linkvisite360{
+        margin-top: 10px;
+        background-color: $bleu-pr-artemise;
+    }
+    .btn-offre {
+        color : $bleu-pr-artemise;
+    }
+    i{
+        padding-right: 6px;
+    }
+
+
+}
+
+button{
+
+    border: none;
+}
+
+.fontcustom{
+
+    font-size: 2em;
+}
+
+.social-icon-set , .price-info .sec-info {
+    a {
+        color : $gris-tx-artemise;
+    }
+
+    a:hover {
+        color : darken($gris-tx-artemise , 15%);
+    }
+}
+
+
+//.social-icon-set a:hover,  .price-info .sec-info a:hover{ color : darken($gris-tx-artemise , 15%); }
+
+
+.chambre-icon-set .row {
+
+    div{
+
+        display: inline-block;
+        margin-left: 5%;
+        margin-bottom: 2%;
+        padding-bottom: 2%;
+        width: 40%;
+        border-bottom : 1px dotted #aaaaaa;
+
+        i{
+            color : $bleu-tx-artemise;
+            @extend .transition-color-2s;
+            padding : 0 10%;
+
+        }
+
+        i:hover{
+            color : lighten($bleu-tx-artemise, 10%);
+        }
+
+    }
+
+
+
+}
+
+
+.price-info {
+
+    .sec-info{
+
+        text-align: center;
+
+        a{
+            font-size: 0.7em;
+        }
+    }
+
+}
+
+.btn-offre{	
+    background-image: linear-gradient( lighten($gris-pr-artemise , 10%), $gris-pr-artemise);
+    color: $bleu-pr-artemise;
+}
+.btn-event, footer{
+    background-color : lighten($bleu-pr-artemise, 10%);
+    background-image: linear-gradient(lighten($bleu-pr-artemise , 10%), $bleu-pr-artemise);
+}
+.btn-resa{
+    background-image: linear-gradient(lighten($rouge-pr-artemise , 10%), $rouge-pr-artemise);
+}
+
+
+
+@-webkit-keyframes greenPulse {
+    from { background-color: $rouge-pr-artemise; -webkit-box-shadow: 0 0 9px #333; }
+    50% { background-color: lighten($rouge-pr-artemise, 30%); -webkit-box-shadow: 0 0px 22px darken($rouge-pr-artemise, 30%); }
+    to { background-color: $rouge-pr-artemise; -webkit-box-shadow: 0 0 9px #333; }
+}
+
+
+
+#menu-header {
+
+    @extend .btn-resa;
+    width: 100%;
+    height: 50px;
+    font-weight: bold;
+    padding: 15px 0;
+    font-size: 1.2em;
+    @extend .transition-color-2s;
+
+
+}
+
+.boxpulse{
+    @include boxPulse($rouge-pr-artemise); 
+
+
+
+}
+
+#menu-header:hover{
+    cursor: pointer;
+    color: #000;
+}
+
+
+.slider{
+    width: 100%;
+    height: 100%;
+
+    background-size: cover;
+
+}
+
+#img-logo{
+
+    margin: 20px 0;
+    width  : 90%;
+}
+
+.img-pt-logo{
+    width: 45%;
+    margin : 5px 0;
+
+}
+
+.link-lang{
+    box-sizing: border-box;
+    padding: 15px;
+    width: 50%;
+    float: left;
+    display: inline-block;
+
+}
+
+
+#main-nav-container{
+    width: 100%;
+    display: none;
+
+}
+
+.transition-color-2s{
+    @include transition-color(0.5s);
+}
+
+
+.link-lang{
+    display: inline-block;
+    color: #fff ;
+    @extend .transition-color-2s;
+}
+
+#main-nav , .menu-lang-container{
+    display: inline-block;
+    font-weight: normal;
+    font-size: 1.07em;
+    ul{
+        list-style-type: none;
+        padding-left: 1px;
+        li {
+            padding :10px 0px;
+            a {
+                font-size: inherit;
+                padding: .5em 1em;
+                width: 100%;
+                @extend .link-lang;
+            }
+        }
+    }
+    #menu-lang{
+        display : inline-block;
+        margin: 0;
+        padding :0;
+        li{
+            margin: .5em 0;
+            float : left;
+            padding: 0;
+        }
+    }
+}
+
+.menu-lang-container{
+    
+    background-color: #809c98;
+    
+    width: 100%;
+    height: auto;
+    
+}
+
+#metaslider_18{
+    margin: 0px;   
+
+}
+
+
+.border-top-radius{
+    @include border-top-radius(3px);
+
+}
+.border-bottom-radius{
+    @include border-bottom-radius(6px);
+
+}
+
+.header-colipsable{
+
+    @extend .border-top-radius;
+    cursor: pointer;
+    padding: 3px 10px;
+    color: #fff;
+    font-family: $font-artemise;
+    position: relative;
+    z-index: 0;
+    background-size: cover;
+    background-position-y: -350px;
+    background-repeat: no-repeat;
+
+    h1, span{
+        z-index: 40;
+        position: inherit;
+        // font-weight: bold;
+        text-shadow: rgba(0, 0, 0, 0.156863) 2px 2px;
+        display: inline-block;
+
+    }
+    h1{
+        margin: 0.7em 0;
+    }
+    span{
+        float: right;
+    }
+
+
+
+
+
+}
+
+.overlay{
+
+    &:hover{
+        opacity: 0.2;
+    }
+    @extend .border-top-radius;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background-color: rgb(0,0,0);
+    opacity: 0.5;
+    color: #fff;
+}
+
+
+
+.art-chambre {
+
+    position : relative;
+    margin: 30px 0;
+
+
+    section{
+        @extend .border-bottom-radius;
+        background-color: #fff;
+        background-color: #F2F4F4;
+        padding: 20px 10px;
+        color : $gris-tx-artemise;
+
+        span{
+            display: block;   
+        }
+
+    }
+}
+
+
+
+.dShadow, .wp-easy-gallery{
+    width: 100%; height: auto;
+
+}
+
+.cgv{
+
+    text-align: center;
+    line-height: 0.9em;
+    padding: 2%;
+}
+
+
+
+#footer-row{
+    z-index: 100;
+    width: 100%;
+    padding-top: 20px;
+    text-align: center;
+    @extend .redBorder;
+
+
+    a, p{
+        color : #fff;
+        @extend .transition-color-2s;
+    }
+    a:hover{
+        color : $bleu-tx-artemise;
+    }
+
+    .link-footer{
+        list-style-type: none;
+
+    }
+}
+
+.redBorder{
+    border-top: solid 9px $rouge-pr-artemise; 
+}
+
+
+#responsive{
+    display : none;
+    span{
+        display : inherit;
+    }
+}
+
+#bandeau-bg-fixe{
+    background-attachment: fixed;
+    background-position: center center;
+    min-height: 300px;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+
+}
+.loremipsum{
+    content: "jn ijn ijn i jn ijn i jn ij ni jn ij ni jn ijnijn ijn ijn"
+}
+
+.attachment-mediem{
+    width: 100%; 
+    height: auto;
+}
+#loaderDiv{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+
+    z-index: 1000;
+    background: rgb(219, 228, 227);
+    background-image: url('../images/gif/loader.gif');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+#closeIframe{
+    position: fixed;
+    top: 10%;
+    right: 5%;
+    z-index: 102;
+    color: RED;
+    cursor: pointer;
+
+}
+
+.visite360HD{
+
+    iframe{
+
+        position: fixed;
+        top: 0%;
+        left: 0%;
+        width: 100%;
+        height: 100%;
+        z-index: 100;
+        background-color: black;
+
+        #krpanoDIV{
+            position: fixed;
+            top: 10%;
+            left: 5%;
+            width: 90%;
+            height: 100%;
+            z-index: 99;
+
+
+        }
+    }
+
+}
+
+span{
+    .icon-rotating{
+        /* Firefox */
+        -moz-transition: all 0.5s ease;
+        /* WebKit */
+        -webkit-transition: all  0.5s ease;
+        /* Opera */
+        -o-transition: all  0.5s ease;
+        /* Standard */
+        transition: all  0.5s ease;
+    }
+}
+
+
+
+.icone-rotate{
+
+
+    /* Firefox */
+    -moz-transform: rotate(180deg);
+    /* WebKit */
+    -webkit-transform:  rotate(180deg);
+    /* Opera */
+    -o-transform:  rotate(180deg);
+    /* Standard */
+    transform:  rotate(180deg);
+}
+
+@import "_media.scss";

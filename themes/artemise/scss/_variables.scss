@@ -1,0 +1,117 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:400,700,900,400italic,700italic);
+$font-artemise: Lato, helvetica, arial, sans-serif;
+$bleu-pr-artemise: #627d79;
+$rouge-pr-artemise: #B42700;
+$gris-pr-artemise: #dbe4e3;
+
+$bleu-tx-artemise: #97c1bb;
+$gris-tx-artemise: #A39C94;
+
+$gris-btn-artemise: #CCCCCC;
+
+
+
+
+
+
+@mixin border-top-radius($radius) {
+    //left
+  -webkit-border-top-left-radius: $radius;
+     -moz-border-top-left-radius: $radius;
+     border-top-left-radius: $radius;
+     //right
+  -webkit-border-top-right-radius: $radius;
+     -moz-border-top-right-radius: $radius;
+     border-top-right-radius: $radius;
+}
+@mixin border-bottom-radius($radius) {
+    //left
+  -webkit-border-bottom-left-radius: $radius;
+     -moz-border-bottom-left-radius: $radius;
+     border-bottom-left-radius: $radius;
+     //right
+  -webkit-border-bottom-right-radius: $radius;
+     -moz-border-bottom-right-radius: $radius;
+     border-bottom-right-radius: $radius;
+}
+
+@mixin transition-color($time){
+    transition-property: color;
+    transition-duration: $time;
+    -webkit-transition-duration: $time;
+    -webkit-transition-property: color;
+    
+}
+
+
+@mixin transition-prop($prop, $time){
+    transition-property: $prop;
+    transition-duration: $time;
+    -webkit-transition-duration: $time;
+    -webkit-transition-property: $prop;
+    
+}
+
+
+
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+@mixin radial-gradient($grad , $col1 , $col2){
+  background: -webkit-radial-gradient($grad, $col1 , $col2); /* For Safari 5.1 to 6.0 */
+  background: -o-radial-gradient($grad, $col1 , $col2); /* For Opera 11.1 to 12.0 */
+  background: -moz-radial-gradient($grad, $col1 , $col2); /* For Firefox 3.6 to 15 */
+  background: radial-gradient($grad, $col1 , $col2);
+    
+}
+@mixin linear-gradient( $col1 , $col2){
+    background: -webkit-linear-gradient( $col1 , $col2); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient( $col1 , $col2); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient( $col1 , $col2); /* For Firefox 3.6 to 15 */
+    background: linear-gradient( $col1 , $col2);
+}
+
+
+//blur effet
+@mixin filter-blur( $param){
+    filter: blur($param);
+    -webkit-filter: blur($param);
+    -moz-filter: blur($param);
+    -o-filter: blur($param);
+    -ms-filter: blur($param);
+}
+
+
+
+// animation 
+@mixin boxPulse($color){
+    
+
+  @-webkit-keyframes boxPulse {
+  from {  -webkit-box-shadow: 0 0 9px #333; }
+  50% {  -webkit-box-shadow: 0 0px 22px lighten($color, 30%); font-size: 1.25em }
+  to {  -webkit-box-shadow: 0 0 9px #333; }
+}
+
+  @keyframes boxPulse {
+  from {  box-shadow: 0 0 9px #333; }
+  50% {  box-shadow: 0 0px 22px lighten($color, 30%); font-size: 1.25em }
+  to {  box-shadow: 0 0 9px #333; }
+}
+
+  -webkit-animation-name: boxPulse;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+  
+  animation-name: boxPulse;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+
+
+
+
+}

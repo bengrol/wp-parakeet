@@ -33,7 +33,7 @@ function scpi_second_panel_content($simulationValues){
     ?>
     <div class="col-md-12">
         <label for="simualtion[montant]">Quel montant ou effort d'épargne mensuel pensez vous investir ?<span>*</span></label>
-        <input required type="number" min="10000" value="<?= $simulationValues['montant'] ?>"
+        <input required type="number"  value="<?= $simulationValues['montant'] ?>"
                name="simualtion[montant]" /> Euros
 
     </div>
@@ -44,11 +44,11 @@ function scpi_second_panel_content($simulationValues){
 
             <div class="ligne-form-simulation">
                 <label for="simualtion[moyen_invest]">Cash <span>*</span></label>
-                <input required type="radio" value="cash" name="simualtion[moyen_invest]" class="simualtion-invest-moyen cash"/>
+                <input  type="radio" value="cash" name="simualtion[moyen_invest]" class="simualtion-invest-moyen cash"/>
             </div>
             <div class="ligne-form-simulation">
                 <label for="simualtion[moyen_invest]">Crédit <span>*</span></label>
-                <input required type="radio" value="credit" name="simualtion[moyen_invest]" class="simualtion-invest-moyen credit"/>
+                <input  type="radio" value="credit" name="simualtion[moyen_invest]" class="simualtion-invest-moyen credit"/>
             </div>
         </div>
     </div>

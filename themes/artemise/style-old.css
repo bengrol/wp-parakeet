@@ -1,0 +1,374 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:300);
+/*
+Theme Name: artemise
+Author: Quikto team
+Author URI: http://Quikto.fr
+Description: Theme Artemise 
+Version: 1.0
+Text Domain: artemise
+
+*/
+
+
+body{
+
+    font-family: Lato, helvetica, arial, sans-serif;
+
+}
+
+header#main-header {
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    color: #fff; 
+
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 0.25em 0.5em;
+    border-radius: 0 0 3px 3px;
+
+    left: 50px; 
+    width: 260px;
+
+
+}
+
+#logo-container{
+
+
+    background-image: radial-gradient( circle at 50% 16% , #A4794B 0%, #8C571F 100% );
+}
+
+aside {
+    position: absolute;
+    z-index: 50;
+    top: 25px;
+    right: 10%;
+    overflow-y: auto;
+    width: 280px;
+    color: white;
+    //background-color: red;
+}
+
+aside div button{
+    display: block;
+
+}
+.upper{
+
+    text-transform: uppercase;
+}
+
+section.chambre-list{
+    min-height: 500px;
+    font-family: Lato, helvetica, arial, sans-serif;
+    font-size: 1.2em;
+}
+#content{
+
+    background-image: url('images/bg.png');
+
+}
+.content-area{
+
+    min-height: 350px;
+}
+
+.titre-page, .sec-prix{
+    color: #B8DB3E;
+}
+.titre-page{
+    font-family: Lato, helvetica, arial, sans-serif;
+    font-size: 3.4em;
+
+}
+
+
+section#bandeau{
+    min-height: 230px;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    //blur effet
+    filter: blur(2px);
+    -webkit-filter: blur(2px);
+    -moz-filter: blur(2px);
+    -o-filter: blur(2px);
+    -ms-filter: blur(2px);
+}
+section.bd-ch{
+    background-image: url('images/img-bandeau-ch-fl07.jpg');
+
+}
+
+
+
+
+#btn-resa , #btn-offre{
+    color: #8C571F;
+}
+#btn-offre:hover{
+    color: #000;
+}
+#btn-resa:hover {
+    color: #F6E7B6;
+}
+
+.btn-grp-offres a:hover , #main-nav a:hover{
+
+    text-decoration: none;
+    color: #F6E7B6;
+}
+.btn-grp-offres a {
+
+    display: block;
+    padding: .75em 1em;
+    text-align: center;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-radius: 3px;
+    color: white;
+}
+
+.social-icon-set a, .price-info .sec-info a{
+    color : rgb(192, 192, 192);
+
+}
+.social-icon-set a:hover,  .price-info .sec-info a:hover{
+    color : rgb(132, 132, 132);
+    text-decoration: none;
+
+}
+
+
+.chambre-icon-set .row div{
+
+    display: inline-block;
+    margin-left: 5%;
+    margin-bottom: 5%;
+    padding-bottom: 5%;
+    width: 40%;
+    border-bottom : 1px dotted #aaaaaa;
+
+
+
+}
+.chambre-icon-set .row div i{
+
+
+    color : rgb(184, 219, 62);
+    padding : 0 10%;
+
+
+}
+.chambre-icon-set .row div i:hover{
+    color : rgb(148, 176, 52);
+}
+
+.price-info{
+
+}
+.price-info .sec-info a{
+    font-size: 0.7em;
+
+}
+
+#btn-offre{	
+    background-image: linear-gradient(#FBE7A7, #F0E7CC);
+
+}
+#btn-event{
+    background-image: linear-gradient(#8C571F, #896B4C);
+}
+#btn-resa, #menu-header{
+    background-image: linear-gradient(#B8DB3E, #9AB834);
+}
+
+#menu-header {
+    width: 100%;
+    height: 50px;
+    font-weight: bold;
+    padding: 15px 0;
+}
+
+#menu-header:hover{
+    cursor: pointer;
+}
+
+
+.slider{
+    width: 100%;
+    height: 100%;
+    background-image: url('http://e-tourisme.loc/artemise-wp/wp-content/themes/artemise/images/img-ok/6.jpg');
+    background-size: cover;
+
+}
+
+#img-logo{
+
+    margin: 20px 0;
+}
+
+.link-lang{
+    box-sizing: border-box;
+    padding: 15px;
+    width: 50%;
+    float: left;
+    display: inline-block;
+    color: #fff;
+}
+
+
+#main-nav-container{
+    //display: none;
+
+    width: 100%;
+    background-image: radial-gradient( circle at 50% 16% , #A4794B 0%, #8C571F 100% );
+}
+
+
+#main-nav ul{
+    list-style-type: none;
+    padding-left: 1px;
+
+}
+
+
+#main-nav li {
+    padding :10px 0px;
+}
+
+#main-nav ul li a {
+    padding: .5em 1em;
+    width: 100%;
+    display: inline-block;
+    color: #fff;
+}
+
+
+
+#metaslider_18{
+    margin: 0px;   
+
+}
+
+
+.art-chambre{
+    position : relative;
+    margin: 30px 0;
+
+
+}
+.header-colipsable{
+    cursor: pointer;
+    padding: 3px 10px;
+    color: #fff;
+    font-family: Lato, helvetica, arial, sans-serif;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    position: relative;
+    z-index: 0;
+    background-size: cover;
+    //height: 150px;
+}
+
+
+.header-colipsable h1, .header-colipsable span {
+    z-index: 40;
+    position: inherit;
+    font-weight: bold;
+    text-shadow: rgba(0, 0, 0, 0.156863) 2px 2px;
+    display: inline-block;
+
+}
+.header-colipsable h1{
+    margin: 0.7em 0;
+}
+.header-colipsable span {
+    float: right;
+}
+
+.overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background-color: rgb(0,0,0);
+    opacity: 0.5;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    color: #fff;
+}
+
+.art-chambre section{
+    background-color: #fff;
+    padding: 20px 10px;
+    color : #A39C94;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+
+}
+.art-chambre section span{
+    display: block;   
+}
+
+
+.dShadow, .wp-easy-gallery{
+    width: 100%; height: auto;
+
+}
+
+.cgv{
+    width: 85%;
+    text-align: center;
+    line-height: 0.9em;
+    padding: 2%;
+}
+
+
+
+footer{
+
+    z-index: 100;
+    background-image: linear-gradient(#8C571F , #9E7447);
+    width: 100%;
+    color : #E7D6C3;
+    padding-top: 20px;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////
+
+@media only screen and (min-width: 1024px){
+
+}
+

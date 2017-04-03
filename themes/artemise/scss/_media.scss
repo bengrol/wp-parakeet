@@ -1,0 +1,194 @@
+@import "_variables.scss";
+$height-resp :  100px;
+
+@media only screen and (min-width : 1001px){
+    
+    #resa-responsive , #main-nav-container-responsive{
+        display : none;
+        
+    }
+    
+}
+
+@media only screen and (max-width: 1000px) and (min-width: 0em){
+
+    .menu-lang-container{
+        display: none;
+    }
+    
+    #bandeau{
+        min-height: 140px;
+    }
+    #img-logo-resp{
+        width: 60%;
+    }
+    
+    aside {
+     top : 0;
+     right : 0;
+     width :  auto;
+     position : fixed;
+     
+     
+        .resa-container{
+          margin-top:  $height-resp;
+    }
+        
+    }
+    
+    #main-nav-container{
+       @include border-bottom-radius(6px);
+          display: none;
+  position: fixed;
+  top:  $height-resp;
+  width: auto;
+        
+        
+    }
+    #main {
+          margin-top: $height-resp*(80/100);
+    }
+    header#main-header{
+        
+        background-color: $bleu-pr-artemise;
+        left: 0px;
+        width: 100%;
+        height: $height-resp;
+       // position : relative;
+
+        /*     */
+            #logo-container{
+               position: fixed;
+               left: 40%;
+               background : none;
+               
+               
+            
+                #img-logo{
+                    margin: 5px 0 0 0;
+                    position: fixed;
+                    width : auto;
+                    height: ($height-resp*80/100);
+                }
+         
+            }
+        /*     */
+            #menu-header{
+                left: 0;
+                @extend .button-responsive;
+        
+            }
+        /*     */
+        
+
+    
+    
+            
+    
+
+    #menu-container{
+        //width: 22%;
+        font-weight: bold;
+        padding: 10px 0;
+    }
+
+        
+        
+        
+        
+        
+        
+    }
+    
+    .btn-grp-offres>a, #bt-resa-aside{
+            display: none;
+        }
+        
+    
+    .boxpulse{
+   animation-name: none;
+    -webkit-animation: none;
+    
+    
+}
+
+#resa-responsive{
+  //display: block;
+  right: 0;
+  @extend .button-responsive;
+    
+  i{
+      padding-right: 5px;
+      font-size: 1.3em;
+  }
+}
+
+.button-responsive{
+    position: fixed;
+    top: 0;
+    width: 150px;
+    font-weight: bold;
+    padding: 0; 
+    font-size: 1.2em;
+    display: block;
+    background-image: none;
+    margin: 2em 0;
+    background-color: transparent;
+    text-transform: uppercase;
+}
+
+.dpDiv{
+    left: 5%;
+  top: $height-resp;
+  width: 90%;
+  height: 60%;
+    
+    
+}
+
+#logopuychene{
+    font-size: 1.2em;
+    padding: 2px 0;
+  
+}
+
+
+
+}
+
+
+@media only screen and (max-width: 400px) and (min-width: 0em){
+    
+    #menu-header-sp{
+        display:none;
+    }
+    
+    
+    header#main-header{
+
+        #menu-header , #resa-responsive{
+            width: 30%;
+            margin: 1.3em 0;
+            font-size: 1.7em;
+        }
+        #logo-container{
+            #img-logo{
+                margin: 15px 0 0 0;
+                width: 30%;
+                height: auto;
+            }
+        }
+
+
+
+    }
+    
+    
+    
+    
+    #resa-responsive>span{
+        display: none;
+    }
+    
+    
+}
