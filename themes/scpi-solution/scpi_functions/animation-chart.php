@@ -10,11 +10,11 @@ function scpi_animation_chart(){
     $datas = array(
         array('label'=>'RENTABILITE DE VOTRE EPARGNE', 'pourcent'=>'90'),
         array('label'=>'SECURITE DE VOTRE EPARGNE', 'pourcent'=>'95'),
-        array('label'=>'ZERO DE SOUCIS DE GESTION LOCATIVE DE VOTRE EPARGNE', 'pourcent'=>'100'),
+        array('label'=>'ZERO SOUCIS DE GESTION LOCATIVE DE VOTRE EPARGNE', 'pourcent'=>'100'),
         array('label'=>'DISPONIBILITE DE VOTRE EPARGNE', 'pourcent'=>'70')
     );
 
-    $title = "<h4>titre section chart</h4>";
+    $title = "<h4>INVESTIR EN SCPI C’EST….</h4>";
     $html = "<section id='chart-animation'>".$title."<ul>";
 
     foreach ($datas as $data){

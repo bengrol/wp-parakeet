@@ -40,6 +40,7 @@ $class = ($footerwidgets == '0' ? 'noborder' : 'normal'); ?>
                     <?php } ?>
 
                     <p><a href="/">Site déclaré à la CNIL sous le numéro 2047631</a></p>
+
                 </div>
      			
 				<?php 
@@ -79,5 +80,6 @@ flexslider();
 
 <?php wp_footer();?>
 
+    <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/signup-forms/popup/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script><script type="text/javascript">require(["mojo/signup-forms/Loader"], function(L) { L.start({"baseUrl":"mc.us15.list-manage.com","uuid":"c05a14ddbde79a918a8c80712","lid":"a5bce16df1"}) })</script>
 </body>
 </html>

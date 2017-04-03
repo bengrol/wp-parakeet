@@ -198,7 +198,7 @@ if( !function_exists( 'home_testimonials' ) ) {
 		
 		<section class="clearfix<?php echo ($count == 1) ? ' home-border' : ''; ?>">
 			
-			<div class="lambda-service-excerpt one_half">
+			<div class="lambda-service-excerpt scpi-one_half">
 				
 				<?php if(isset($metadata['service_headline'])) :?>
 			

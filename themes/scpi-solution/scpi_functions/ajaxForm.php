@@ -18,7 +18,13 @@ function scpi_ajax_function() {
 
 
 function scpi_ajax_sendmail($data){
-  $to = get_option('admin_email');
+  //$to = get_option('admin_email');
+
+    $Bcc = get_option('admin_email');
+    $user_info = get_userdata(3);
+    $to = $user_info->user_email;
+
+
   $subject = "Un contact du formulaire rapide ".get_bloginfo('name');
   $data['mail'] = str_replace("%40","@",$data['mail']);
 
@@ -28,6 +34,7 @@ function scpi_ajax_sendmail($data){
     if(filter_var($data['mail'], FILTER_VALIDATE_EMAIL)){
 
         $headers = 'From: '. $data['mail'] . "\r\n" .
+            'Bcc:'.$Bcc."\r\n" .
             'Reply-To: ' . $data['mail'] . "\r\n";
 
         $message = scpi_create_body($data);

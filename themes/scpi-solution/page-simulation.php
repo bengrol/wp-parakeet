@@ -8,13 +8,13 @@ function my_contact_form_generate_response($type, $message){
     global $response;
     if($type == "success") {
         $response = "<div class='success'>{$message}</div>";
-
     }
     else {
         $response = "<div class='error'>{$message}</div>";
     }
-
 }
+
+if (isset($_POST['submitted'])  && $_POST['submitted']){
 
 
 //response messages
@@ -78,7 +78,7 @@ $corp_du_message = "Mr/Mm ".$simulationValues['message_name']." ".$simulationVal
 
 
 
-
+}
 ///if (isset($_POST['submitted'])  && $_POST['submitted']) my_contact_form_generate_response("error", $missing_content);
 
 

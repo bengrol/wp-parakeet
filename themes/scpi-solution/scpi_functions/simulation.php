@@ -64,8 +64,7 @@ function scpi_third_panel_content($simulationValues){
     ?>
 
 
-    <h5>Nous souhaiterions également connaitre votre situation fiscale pour vous
-        proposer le produit le plus personnalisé</h5>
+    <h5>Nous souhaiterions connaitre votre situation fiscale pour vous proposer le produit le plus personnalisé</h5>
     <div class="col-md-12">
         <div class="ligne-form-simulation">
             <label>Célibataire </label><input type="radio" value="celibataire" required name="simualtion[situation_fam]" >
@@ -78,10 +77,10 @@ function scpi_third_panel_content($simulationValues){
     </div>
 
     <div class="col-md-12 ligne-form-simulation"><label for="message_human">nombre de parts fiscales <span>*</span></label><br>
-        <input type="number" step="0.5" name="simualtion[nb_part_fiscales]"></div>
+        <input type="number" required step="0.5" name="simualtion[nb_part_fiscales]"></div>
 
     <div class="col-md-12 ligne-form-simulation"><label for="message_human">revenus du foyer <span>*</span></label><br>
-        <input  type="number"  name="simualtion[revenu_foyer]"></div>
+        <input  type="number"  required name="simualtion[revenu_foyer]"></div>
 
     <?php
 }
