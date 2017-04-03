@@ -1,5 +1,4 @@
 <?php
-
 //response generation function
 $response = "";
 
@@ -17,49 +16,51 @@ function my_contact_form_generate_response($type, $message){
 }
 
 
-//response messages
-$not_human       = "Human verification incorrect.";
-$missing_content = "Please supply all information.";
-$email_invalid   = "Adresse mail invalide.";
-$message_unsent  = "Le message n'a pas été envoyé, merci de réessayer.";
-$message_sent    = "Merci ! Votre message a bien été envoyé.";
+if (isset($_POST['submitted'])  && $_POST['submitted']){
+
+    //response messages
+    $not_human       = "Human verification incorrect.";
+    $missing_content = "Please supply all information.";
+    $email_invalid   = "Adresse mail invalide.";
+    $message_unsent  = "Le message n'a pas été envoyé, merci de réessayer.";
+    $message_sent    = "Merci ! Votre message a bien été envoyé.";
 
 //user posted variables
-$simulationValues = [];
-if(isset($_POST) && $_POST['simualtion']){
-    foreach($_POST['simualtion'] as $k => $v){
-        $simulationValues[$k] = esc_attr($v);
+    $simulationValues = [];
+    if(isset($_POST) && $_POST['simualtion']){
+        foreach($_POST['simualtion'] as $k => $v){
+            $simulationValues[$k] = esc_attr($v);
+        }
     }
-}
 
 
 
 //php mailer variables
-$Bcc = get_option('admin_email');
-$user_info = get_userdata(3);
-$to = $user_info->user_email;
+    $Bcc = get_option('admin_email');
+    $user_info = get_userdata(3);
+    $to = $user_info->user_email;
 
-$subject = "Demande de simulation de  ".get_bloginfo('name');
-$headers = 'From: '. $simulationValues['message_email'] . "\r\n" .
-    'Bcc:'.$Bcc."\r\n" .
-    'Reply-To: ' . $simulationValues['message_email'] . "\r\n";
+    $subject = "Demande de simulation de  ".get_bloginfo('name');
+    $headers = 'From: '. $simulationValues['message_email'] . "\r\n" .
+        'Bcc:'.$Bcc."\r\n" .
+        'Reply-To: ' . $simulationValues['message_email'] . "\r\n";
 
-$corp_du_message = "Mr/Mm ".$simulationValues['message_name']." ".$simulationValues['message_firstname']."\n".
-                    "souhaite etre recontacté(e) pour une simulation sur la base des éléments suivant : \n".
-                    "\n\n".
-                    "Investissement : \n".
-                    "Montant : ".$simulationValues['montant']." euros \n".
-                    "Moyen   : ".$simulationValues['moyen_invest']." \n".
-                     "Durée   : ".$simulationValues['duree']." an(s) \n".
-                    "\n\n".
-                    "Sa situtation est la suivante : \n".
-                    "Relation : ".$simulationValues['situation_fam']." \n".
-                    "Nombre de part fiscales : ".$simulationValues['nb_part_fiscales']." \n".
-                    "Revenu annuel: ".$simulationValues['revenu_foyer']. " euros/an".
-                    "\n\n".
-                    "Ses coordonnées : \n".
-                    " Telephone : ".$simulationValues['message_phone'].
-                    " Mail : ".$simulationValues['message_email'];
+    $corp_du_message = "Mr/Mm ".$simulationValues['message_name']." ".$simulationValues['message_firstname']."\n".
+        "souhaite etre recontacté(e) pour une simulation sur la base des éléments suivant : \n".
+        "\n\n".
+        "Investissement : \n".
+        "Montant : ".$simulationValues['montant']." euros \n".
+        "Moyen   : ".$simulationValues['moyen_invest']." \n".
+        "Durée   : ".$simulationValues['duree']." an(s) \n".
+        "\n\n".
+        "Sa situtation est la suivante : \n".
+        "Relation : ".$simulationValues['situation_fam']." \n".
+        "Nombre de part fiscales : ".$simulationValues['nb_part_fiscales']." \n".
+        "Revenu annuel: ".$simulationValues['revenu_foyer']. " euros/an".
+        "\n\n".
+        "Ses coordonnées : \n".
+        " Telephone : ".$simulationValues['message_phone'].
+        " Mail : ".$simulationValues['message_email'];
 
     //validate email
     if(!filter_var($simulationValues['message_email'], FILTER_VALIDATE_EMAIL)){
@@ -70,7 +71,7 @@ $corp_du_message = "Mr/Mm ".$simulationValues['message_name']." ".$simulationVal
             my_contact_form_generate_response("error", $missing_content);
         }
         else {
-           $sent = wp_mail($to, $subject, strip_tags($corp_du_message), $headers);
+            $sent = wp_mail($to, $subject, strip_tags($corp_du_message), $headers);
             if($sent) my_contact_form_generate_response("success", $message_sent); //message sent!
             else my_contact_form_generate_response("error", $message_unsent); //message wasn't sent
         }
@@ -78,8 +79,11 @@ $corp_du_message = "Mr/Mm ".$simulationValues['message_name']." ".$simulationVal
 
 
 
+}
 
-///if (isset($_POST['submitted'])  && $_POST['submitted']) my_contact_form_generate_response("error", $missing_content);
+
+
+
 
 
 ?>
