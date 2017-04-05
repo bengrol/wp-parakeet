@@ -155,7 +155,7 @@ if( !function_exists( 'home_blog_columns' ) ) {
 								
 		<?php endif; ?>	
 		
-		<?php render_lambda_blog($metadata); ?>
+		<?php scpi_render_lambda_blog($metadata); ?>
 		
 		</section>
 		
