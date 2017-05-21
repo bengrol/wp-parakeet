@@ -1,28 +1,52 @@
-(function($){	
+(function($){
 
 var $panel =$('#respond').find('.question-panel');
-    
+
 $panel.find('input').each(function (index) {
     $(this).addClass('pristine');
 });
 
-//console.debug('DEBUG', $panel);
+    var rules = {
+        first_name :{
+            required: true,
+            minlength: 5,
+            maxlength: 20,
+        },
+        last_name :{},
+        mail :{
+            required: true,
+            minlength: 6,
+            email: true
+        },
+        tel :{},
+        zip_code :{},
+        date_naissance :{},
+        situation :{},
+        montant :{},
+        obj :{},
+        renom :{},
 
-jQuery.extend(jQuery.validator.messages,{required: "Ce champs est requis .",
-  email: "Merci de renseigner une adresse mail valide",
-  date: "Merci de renseigner une date valide",
-  number: "Merci de renseigner un nombre valide",
-  maxlength: $.validator.format( "Merci de taper moins de {0} characters." ),
-  minlength: $.validator.format( "Merci de taper plus de  {0} characters." ),
-  rangelength: $.validator.format( "Merci de rentrer une valeur comprise entre {0} et {1} ." ),
-  range: $.validator.format( "Merci de rentrer une valeur comprise entre {0} et {1} " ),
-  max: $.validator.format( "Merci de rentrer une valeur inférieur ou égale à {0}." ),
-  min: $.validator.format( "Merci de rentrer une valuer inférieur ou égale à  {0}." ),
 
-} )
+    };
+    var messages = {
+        first_name :{
+            required:'Merci de renseigner ce champ',
+        },
+        last_name :{},
+        mail :{},
+        tel :{},
+        zip_code :{},
+        date_naissance :{},
+        situation :{},
+        montant :{},
+        obj :{},
+        renom :{},
+    };
 
-
-var validator = $('#simulation-form').validate();
+var validator = $('#simulation-form').validate({
+    rules:rules,
+    messages:messages,
+});
 
 $panel.each(function(){
 
@@ -32,14 +56,14 @@ $panel.each(function(){
         $(this).removeClass('pristine');
     });
 
-    inputs.on('focusout',function(e){
+    inputs.on('keyup',function(e){
 
 		var lenght = inputs.filter('[required]').length;
 		var index = 0;
 
         inputs.each(function(k,e){
         	if( !$(e).hasClass('pristine') && $(e).attr('required') || $(e).val() !== ''){
-        		console.debug('debug required or not empty ', e);
+        		//console.debug('debug required or not empty ', e);
 
                 if( validator.element( e ) && $(e).attr('required') ){
                     index += 1;

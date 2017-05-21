@@ -38,7 +38,7 @@
   };
   var messages = {
     first_name :{
-      required:'Merci de renseigner vite ce champ',
+      required:'Merci de renseigner Votre nom',
     },
     last_name :{},
     mail :{},

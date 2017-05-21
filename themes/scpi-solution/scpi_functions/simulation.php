@@ -64,7 +64,7 @@ function scpi_third_panel_content($simulationValues){
     ?>
 
 
-    <h5>Nous souhaiterions également connaitre votre situation fiscale pour vous
+    <h5>Nous souhaiterions connaitre votre situation fiscale pour vous
         proposer le produit le plus personnalisé</h5>
     <div class="col-md-12">
         <div class="ligne-form-simulation">

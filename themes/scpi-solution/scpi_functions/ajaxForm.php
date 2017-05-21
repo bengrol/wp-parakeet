@@ -18,7 +18,12 @@ function scpi_ajax_function() {
 
 
 function scpi_ajax_sendmail($data){
-  $to = get_option('admin_email');
+
+    $Bcc = get_option('admin_email');
+    $user_info = get_userdata(3);
+    $to = $user_info->user_email;
+
+
   $subject = "Un contact du formulaire rapide ".get_bloginfo('name');
   $data['mail'] = str_replace("%40","@",$data['mail']);
 
@@ -28,7 +33,9 @@ function scpi_ajax_sendmail($data){
     if(filter_var($data['mail'], FILTER_VALIDATE_EMAIL)){
 
         $headers = 'From: '. $data['mail'] . "\r\n" .
+            'Bcc:'.$Bcc."\r\n" .
             'Reply-To: ' . $data['mail'] . "\r\n";
+
 
         $message = scpi_create_body($data);
         $sent = wp_mail($to, $subject, strip_tags($message), $headers);
@@ -69,7 +76,7 @@ function scpi_form_content($title_content = false) {
 
     }
     else{
-      $html .= vsprintf("<label >%3\$s</label><input name='%2\$s' type='%1\$s'  placeholder='%3\$s'/>", $champ );
+      $html .= vsprintf("<label >%3\$s</label><input name='%2\$s' type='%1\$s'  placeholder='%4\$s'/>", $champ );
     }
 
   }
@@ -82,12 +89,12 @@ return $html;
 
 function scpi_form_listinput(){
   return array(
-    array('type'=>'text', 'name'=>'first_name', 'label'=>'Prenom', ),
-    array('type'=>'text', 'name'=>'last_name', 'label'=>'Nom' ),
-    array('type'=>'email', 'name'=>'mail', 'label'=>'mail' , 'option'=>'required'),
-    array('type'=>'tel', 'name'=>'tel', 'label'=>'téléphone' ),
-    array('type'=>'text', 'name'=>'zip_code', 'label'=>'code postal' ),
-    array('type'=>'date', 'name'=>'date_naissance', 'label'=>'date de naissance' ),
+    array('type'=>'text', 'name'=>'first_name', 'label'=>'Prenom',  'placeholder'=>'Prenom'),
+    array('type'=>'text', 'name'=>'last_name', 'label'=>'Nom',  'placeholder'=>'Nom' ),
+    array('type'=>'email', 'name'=>'mail', 'label'=>'mail' , 'placeholder'=>'mail'),
+    array('type'=>'tel', 'name'=>'tel', 'label'=>'téléphone',  'placeholder'=>'téléphone' ),
+    array('type'=>'text', 'name'=>'zip_code', 'label'=>'code postal' ,  'placeholder'=>'code postal'),
+    array('type'=>'text', 'name'=>'date_naissance', 'label'=>'date de naissance',  'placeholder'=>'jour/mois/année' ),
     array('type'=>'select', 'name'=>'situation', 'label'=>'situation familiale',
         'options'=>array("célibataire","concubinage","divorcé","veuf", "marié", "pacs") ),
     array('type'=>'select', 'name'=>'montant', 'label'=>'montant investissement',
@@ -102,7 +109,7 @@ function scpi_form_listinput(){
 }
 
 function scpi_create_body($data){
-    $body = " Prise de contact formulaire \n\n ";
+    $body = " Prise de contact formulaire rapide \n\n ";
 
     $list_input = array(
         'first_name'=>'Prenom',
@@ -121,8 +128,10 @@ function scpi_create_body($data){
 
     foreach ($data as $k => $row){
         $label =  $list_input[$k];
+        $row = str_replace(' ', '', $row);
+        $row = urldecode( $row);
 
-        $body .= "- ".$label." :  ".$row."\n";
+        $body .= "- ".$label." :  ".html_entity_decode($row)."\n";
     }
 
 
