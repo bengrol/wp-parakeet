@@ -220,7 +220,7 @@ if( !function_exists( 'home_testimonials' ) ) {
 					
 					if($z <= $maxservice) { ?>
 					
-					<article class="list"><h3 class="trigger"><a href="#"><?php echo (isset($tab['tab_name'])) ? lambda_translate_meta($tab['tab_name']) : ''; ?></a></h3>
+					<article class="list"><h3 class="trigger"><a href="#" class="gtm-definition-term"><?php echo (isset($tab['tab_name'])) ? lambda_translate_meta($tab['tab_name']) : ''; ?></a></h3>
 					<div class="toggle_container"><div class="block clearfix"><?php echo (isset($tab['tab_content'])) ? do_shortcode(apply_filters('the_content', $tab['tab_content'])) : ''; ?></div></div></article>
 				
 					<?php  } $z++; } } ?>

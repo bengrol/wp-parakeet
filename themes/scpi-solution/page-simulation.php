@@ -116,7 +116,7 @@ if (isset($_POST['submitted'])  && $_POST['submitted']){
                                             <?php print scpi_third_panel_content($simulationValues); ?>
 
 
-                                                <button class="valider btn btn-default" disabled="true" data-target="2">
+                                                <button class="valider btn btn-default gtm-simulation-page-step-1" disabled="true" data-target="2">
                                                     valider
                                                 </button>
 
@@ -129,7 +129,7 @@ if (isset($_POST['submitted'])  && $_POST['submitted']){
 
                                             <?php print scpi_second_panel_content($simulationValues); ?>
 
-                                            <button class="valider  btn btn-default" disabled="true" data-target="3">valider</button>
+                                            <button class="valider  btn btn-default gtm-simulation-page-step-2" disabled="true" data-target="3">valider</button>
                                         </div>
                                     </div>
 
@@ -141,7 +141,7 @@ if (isset($_POST['submitted'])  && $_POST['submitted']){
 
 
                                             <div class="col-md-12 ligne-form-simulation">
-                                                <button class="btn btn-default btn-lg send-simul" form="simulation-form" type="submit">
+                                                <button class="btn btn-default btn-lg send-simul gtm-simulation-page-step-3" form="simulation-form" type="submit">
                                                     Recevoir Ma Simulation GRATUITE</button>
                                             </div>
 
