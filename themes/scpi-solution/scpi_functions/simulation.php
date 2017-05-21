@@ -24,6 +24,7 @@ function scpi_first_panel_content($simulationValues){
         <label for="simualtion[message_email]">Email <span>*</span></label>
         <input type="email" required name="simualtion[message_email]"
                value="<?= $simulationValues['message_email']; ?>">
+        <input type="hidden"  name="submitted" value="submitted">
     </div>
 
 <?php

@@ -34,9 +34,12 @@ add_action( 'widgets_init', function(){
 	register_widget( 'My_Widget' );
 });
 
-add_filter( 'the_password_form', function () {
+add_filter( 'the_password_form', 'custom_password_form' );
+function custom_password_form() {
     global $post;
 
+    $text = "Cette partie du site est reserve aux membres du club scpi-solution. <br />
+ pour obtenir votre mot de passe, veuillez remplir le formualuire de contact ";
 
     $label = 'pwbox-'.( empty( $post->ID ) ? rand() : $post->ID );
     $o = '<form class="protected-post-form" action="' . get_option('siteurl') . '/wp-login.php?action=postpass" method="post">
@@ -44,10 +47,10 @@ add_filter( 'the_password_form', function () {
     <label class="pass-label" for="' . $label . '">' . __( "Merci de rentrer le mot de passe:" ) . ' </label>
     <input name="post_password" id="' . $label . '" type="password" style="background: #ffffff; border:1px solid #999; color:#333333; padding:10px;" size="20" />
     <input type="submit" name="Submit" class="button" value="' . esc_attr__( "Valider" ) . '" />
-    </form><p style="font-size:14px;margin:0px;">Cette partie du site est réservée aux membres du club scpi-solution. <br />
- pour obtenir votre mot de passe, veuillez remplir <strong><a href="/nous-contacter">le formulaire de contact</a></strong></p>';
+    </form><p style="font-size:14px;margin:0px;">'.$text.'</p>
+    ';
     return $o;
-});
+};
 
 
 
@@ -217,3 +220,4 @@ if( !function_exists( 'scpi_render_lambda_blog' ) ) {
         <?php
     }
 }
+
