@@ -115,15 +115,13 @@ if( !function_exists( 'scpi_render_lambda_blog' ) ) {
                             <a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'Nevada' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark"><?php the_title(); ?></a>
                         </h1>
 
-                        <div class="entry-meta row clearfix">
+                        <div class="entry-meta  clearfix">
 
                             <div class="post-ut">
                                 <?php echo lambda_posted_on(); ?>
                             </div> <!-- post date -->
 
-                            <div class="post-ut">
-                                <span class="comments-link"><?php comments_popup_link( __( '0 Comments', 'Nevada' ), __( '1 Comment', 'Nevada' ), __( '% Comments', 'Nevada' ) ); ?></span>
-                            </div><!-- post comments -->
+
 
                             <?php if(get_option_tree('activate_likes_in_blog') == "yes" && (isset($metadata['activate_blog_like']) && $metadata['activate_blog_like'] != 'off')) : ?>
 

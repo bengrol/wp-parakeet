@@ -151,7 +151,7 @@ if( !function_exists( 'home_blog_columns' ) ) {
 			<h3 class="home-title"><span><?php echo lambda_translate_meta($metadata['blog_headline']); ?></span></h3>
 								
 		<?php endif; ?>	
-		
+
 		<?php render_lambda_blog($metadata); ?>
 		
 		</section>

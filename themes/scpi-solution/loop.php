@@ -94,415 +94,416 @@ $sticky = get_option( 'sticky_posts' );
                     
                     <div class="entry-meta row clearfix">
                     
-					<div class="post-ut">                        
+					<div class="post-ut">
 						<?php _e( 'By ', 'Nevada' ); ?>
 						<a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>">
 							<span class="author-link"><?php the_author(); ?></span>
-						</a>												
+						</a>
                     </div> <!-- post by -->
-					
+
                     <div class="post-ut">
                         <?php echo lambda_posted_on(); ?>
                     </div> <!-- post date -->
-                      
-					     
-                    <div class="post-ut">	
-                       <span class="comments-link"><?php comments_popup_link( __( '0 Comments', 'Nevada' ), __( '1 Comment', 'Nevada' ), __( '% Comments', 'Nevada' ) ); ?></span>
+
+
+                    <div class="post-ut">
+                       <span class="comments-link">
+                       <?php comments_popup_link( __( '0 Comments', 'Nevada' ), __( '1 Comment', 'Nevada' ), __( '% Comments', 'Nevada' ) ); ?></span>
                     </div><!-- post comments -->
-					
+
                     <?php if(get_option_tree('activate_likes_in_blog') == "yes") : ?>
-                    
-                    <?php echo GetLambdaLikePost(); ?>				
-                    
+
+                    <?php echo GetLambdaLikePost(); ?>
+
         			<?php endif; ?>
-                                             
-                </div><!-- .entry-meta -->    
-                   
-                
-               
-                                  
-            	</header>              
-                    	
-				<?php $post_format = get_post_format();	
+
+                </div><!-- .entry-meta -->
+
+
+
+
+            	</header>
+
+				<?php $post_format = get_post_format();
 				if(isset($postformat['portfolio_type']) && $postformat['portfolio_type'] == 'image_portfolio') { $post_format = 'gallery'; }
-				get_template_part( 'post-formats/' . $post_format ); ?> 
-                            	
-        	       
+				get_template_part( 'post-formats/' . $post_format ); ?>
+
+
         	<div class="entry-content clearfix">
-		 
+
                 <div class="entry-summary">
-                
-                <?php if ( is_archive() || is_search() || get_option_tree('excerpt_blog') == 'yes') : 
-                
-                    the_excerpt(); 
-            
-                else : 
-                
-                    the_content( __( 'Read more <span class="meta-nav">&#043;</span>', 'Nevada' ) );       
-                
-                endif; ?>	
-                
+
+                <?php if ( is_archive() || is_search() || get_option_tree('excerpt_blog') == 'yes') :
+
+                    the_excerpt();
+
+                else :
+
+                    the_content( __( 'Read more <span class="meta-nav">&#043;</span>', 'Nevada' ) );
+
+                endif; ?>
+
                 </div><!-- entry-summary -->
-        
+
            </div><!-- .entry-content -->
-                
-                             
+
+
            <footer class="entry-footer clearfix">
-           		                
-               
+
+
            </footer>
-                              
-                       
+
+
 			<div class="edit-link-wrap">
 				<?php edit_post_link( __( 'Edit', 'Nevada' ), '<span class="edit-link">', '</span>' ); ?>
 			</div><!-- .edit-link-wrap -->
-            
+
           </article>
-          
-		</section><!-- #post-## --> 
- 
-	<?php 
+
+		</section><!-- #post-## -->
+
+	<?php
     #-----------------------------------------------------------------
     # Video Format
     #-----------------------------------------------------------------
     ?>
 
-	<?php elseif ( ( function_exists( 'get_post_format' ) && 'video' == get_post_format( $post->ID ) ) 
+	<?php elseif ( ( function_exists( 'get_post_format' ) && 'video' == get_post_format( $post->ID ) )
 					|| isset($postformat['portfolio_type']) && $postformat['portfolio_type'] == 'video_portfolio'
 					|| in_category( _x( 'videos', 'video category slug', 'Nevada' ) )  ) : ?>
-    	
-		
-		
-		
+
+
+
+
 		<?php if ( is_search() && $postformat['portfolio_type'] == 'video_portfolio' ) { ?>
-		
+
 		<section id="post-<?php the_ID(); ?>" class="post">
-		
+
 		<?php } else { ?>
-		
-		<section id="post-<?php the_ID(); ?>" <?php post_class(); ?>>              
-	    
+
+		<section id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+
         <?php } ?>
-		
-		
-		
-		           
+
+
+
+
         <article class="entry-post clearfix">
-        
+
         <header class="entry-header clearfix">
-				
-                
+
+
                    	<?php if(in_array($post->ID,$sticky)) { echo '<span class="sticky-title">Sticky Post</span>'; } ?>
 					<h1 class="entry-title video-post-title">
                         <a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'Nevada' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark"><?php the_title(); ?></a>
-                        
+
                     </h1>
-                    
+
                     <div class="entry-meta row clearfix">
-                	
-					<div class="post-ut">                        
+
+					<div class="post-ut">
 						<?php _e( 'By ', 'Nevada' ); ?>
 						<a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>">
 							<span class="author-link"><?php the_author(); ?></span>
-						</a>												
+						</a>
                     </div> <!-- post by -->
-					
+
                     <div class="post-ut">
                         <?php echo lambda_posted_on(); ?>
                     </div> <!-- post date -->
-                         
-                    <div class="post-ut">	
+
+                    <div class="post-ut">
                        <span class="comments-link"><?php comments_popup_link( __( '0 Comments', 'Nevada' ), __( '1 Comment', 'Nevada' ), __( '% Comments', 'Nevada' ) ); ?></span>
                     </div><!-- post comments -->
-                    
+
                     <?php if(get_option_tree('activate_likes_in_blog') == "yes") : ?>
-                    
-                    <?php echo GetLambdaLikePost(); ?>				
-                    
+
+                    <?php echo GetLambdaLikePost(); ?>
+
         			<?php endif; ?>
-                                             
-                </div><!-- .entry-meta -->    
-                   
-                
-                 
-                    
-                   
-                
+
+                </div><!-- .entry-meta -->
+
+
+
+
+
+
             	</header>
-			
-					 					 
-					
+
+
+
 					 <?php 	//include player
 					 $post_format = get_post_format();
  					 if(isset($postformat['portfolio_type']) && $postformat['portfolio_type'] == 'video_portfolio') { $post_format = 'video'; }
-					 get_template_part( 'post-formats/' . $post_format ); 
+					 get_template_part( 'post-formats/' . $post_format );
 					 ?>
-                     
-					          
-		
-			 
-        
+
+
+
+
+
         <div class="entry-content clearfix">
-        
+
         <div class="entry-summary">
-		<?php if ( is_archive() || is_search() || get_option_tree('excerpt_blog') == 'yes') : 
-		
-			the_excerpt(); 
-	
-		else : 
-		
-			the_content( __( 'Read more <span class="meta-nav">&#043;</span>', 'Nevada' ) );       
-		
-		endif; ?>        
+		<?php if ( is_archive() || is_search() || get_option_tree('excerpt_blog') == 'yes') :
+
+			the_excerpt();
+
+		else :
+
+			the_content( __( 'Read more <span class="meta-nav">&#043;</span>', 'Nevada' ) );
+
+		endif; ?>
 		</div><!-- entry-summary -->
-        
+
         </div><!-- .entry-content -->
-        
+
         <footer class="entry-footer clearfix">
-                	
-                
-               
+
+
+
                 </footer>
-        
-                	 
-                       
+
+
+
 			<div class="edit-link-wrap">
 				<?php edit_post_link( __( 'Edit', 'Nevada' ), '<span class="edit-link">', '</span>' ); ?>
 			</div><!-- .edit-link-wrap -->
-            
-          </article>  
+
+          </article>
 		</section><!-- #post-## -->
-        
-	
-    <?php 
+
+
+    <?php
     #-----------------------------------------------------------------
     # Audio Format
     #-----------------------------------------------------------------
     ?>
- 
-	<?php elseif (  ( function_exists( 'get_post_format' ) && 'audio' == get_post_format( $post->ID ) ) 
+
+	<?php elseif (  ( function_exists( 'get_post_format' ) && 'audio' == get_post_format( $post->ID ) )
 					|| isset($postformat['portfolio_type']) && $postformat['portfolio_type'] == 'audio_portfolio'
 					|| in_category( _x( 'audio', 'audio category slug', 'Nevada' ) )  ) : ?>
-             
-        
-		
-		
+
+
+
+
 		<?php if ( is_search() && $postformat['portfolio_type'] == 'audio_portfolio' ) { ?>
-		
+
 		<section id="post-<?php the_ID(); ?>" class="post">
-		
+
 		<?php } else { ?>
-		
-		<section id="post-<?php the_ID(); ?>" <?php post_class(); ?>>              
-	    
+
+		<section id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+
         <?php } ?>
-		
-		
-		
-                   
+
+
+
+
         <article class="entry-post clearfix">
-        
+
         <header class="entry-header clearfix">
-				
-                
+
+
                    	<?php if(in_array($post->ID,$sticky)) { echo '<span class="sticky-title">Sticky Post</span>'; } ?>
 					<h1 class="entry-title audio-post-title">
                         <a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'Nevada' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark"><?php the_title(); ?></a>
-                        
+
                     </h1>
-                    
+
                     <div class="entry-meta row clearfix">
-                	
-					<div class="post-ut">                        
+
+					<div class="post-ut">
 						<?php _e( 'By ', 'Nevada' ); ?>
 						<a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>">
 							<span class="author-link"><?php the_author(); ?></span>
-						</a>												
+						</a>
                     </div> <!-- post by -->
-					
+
                     <div class="post-ut">
                         <?php echo lambda_posted_on(); ?>
                     </div> <!-- post date -->
-                         
-                    <div class="post-ut">	
+
+                    <div class="post-ut">
                        <span class="comments-link"><?php comments_popup_link( __( '0 Comments', 'Nevada' ), __( '1 Comment', 'Nevada' ), __( '% Comments', 'Nevada' ) ); ?></span>
                     </div><!-- post comments -->
-                    
+
                     <?php if(get_option_tree('activate_likes_in_blog') == "yes") : ?>
-                    
-                    <?php echo GetLambdaLikePost(); ?>				
-                    
+
+                    <?php echo GetLambdaLikePost(); ?>
+
         			<?php endif; ?>
-                                             
-                </div><!-- .entry-meta -->    
-                   
-                
-                
-                    
-                   
-                
+
+                </div><!-- .entry-meta -->
+
+
+
+
+
+
             	</header>
-        
-				
-            	
-				<?php 
-				
+
+
+
+				<?php
+
 				$audiometa = $lambda_meta_data->the_meta();
-				$audiopref = get_option_tree('soundcloud_player_iframe'); 
-				($audiopref == 'HTML5') ? $iframe = true : false; 
-				
+				$audiopref = get_option_tree('soundcloud_player_iframe');
+				($audiopref == 'HTML5') ? $iframe = true : false;
+
 				if(isset($audiometa['soundcloud_url']) && $audiometa['soundcloud_url'] && empty($audiometa['mp3_url'])) {
-					
+
 					echo '<div class="post_player">'.do_shortcode('[soundcloud url="'.$audiometa['soundcloud_url'].'" /]').'</div>';
-				
+
 				} else {
-										
+
 					lambda_audioplayer_java($audiometa, $post->ID);
-				
+
 				}
-				
-				?> 
-                
-                
-                
-			
-			 
-             
-        	<div class="entry-content clearfix">       
-        
-        
+
+				?>
+
+
+
+
+
+
+        	<div class="entry-content clearfix">
+
+
         <div class="entry-summary">
-		<?php if ( is_archive() || is_search() || get_option_tree('excerpt_blog') == 'yes') : 
-		
-			the_excerpt(); 
-	
-		else : 
-		
-			the_content( __( 'Read more <span class="meta-nav">&#043;</span>', 'Nevada' ) );       
-		
-		endif; ?>        
+		<?php if ( is_archive() || is_search() || get_option_tree('excerpt_blog') == 'yes') :
+
+			the_excerpt();
+
+		else :
+
+			the_content( __( 'Read more <span class="meta-nav">&#043;</span>', 'Nevada' ) );
+
+		endif; ?>
 		</div><!-- entry-summary -->
         </div><!-- .entry-content -->
-        
-        
+
+
          <footer class="entry-footer clearfix">
-                	
-                
-              
+
+
+
                 </footer>
-                	 
-                       
+
+
 			<div class="edit-link-wrap">
 				<?php edit_post_link( __( 'Edit', 'Nevada' ), '<span class="edit-link">', '</span>' ); ?>
 			</div><!-- .edit-link-wrap -->
-            
-          </article>  
+
+          </article>
 		</section><!-- #post-## -->
-        
-            
-	<?php 
+
+
+	<?php
     #-----------------------------------------------------------------
     # Link Format
     #-----------------------------------------------------------------
     ?>
 
 	<?php elseif ( ( function_exists( 'get_post_format' ) && 'link' == get_post_format( $post->ID ) ) || in_category( _x( 'links', 'link category slug', 'Nevada' ) )  ) : ?>
-        
-        
+
+
         <section id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-        
-        <article class="entry-post clearfix">                              
-        
+
+        <article class="entry-post clearfix">
+
         <header class="entry-header clearfix">
-				
-                
+
+
                    	<?php if(in_array($post->ID,$sticky)) { echo '<span class="sticky-title">Sticky Post</span>'; } ?>
 					<h1 class="entry-title link-post-title">
                         <a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'Nevada' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark"><?php the_title(); ?></a>
-                        
+
                     </h1>
-                    
+
                     <div class="entry-meta row clearfix">
-					
- 					<div class="post-ut">                        
+
+ 					<div class="post-ut">
 						<?php _e( 'By ', 'Nevada' ); ?>
 						<a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>">
 							<span class="author-link"><?php the_author(); ?></span>
-						</a>												
-                    </div> <!-- post by -->               
-					
+						</a>
+                    </div> <!-- post by -->
+
                     <div class="post-ut">
                         <?php echo lambda_posted_on(); ?>
                     </div> <!-- post date -->
-                         
-                    <div class="post-ut">	
+
+                    <div class="post-ut">
                        <span class="comments-link"><?php comments_popup_link( __( '0 Comments', 'Nevada' ), __( '1 Comment', 'Nevada' ), __( '% Comments', 'Nevada' ) ); ?></span>
                     </div><!-- post comments -->
-                    
+
                     <?php if(get_option_tree('activate_likes_in_blog') == "yes") : ?>
-                    
-                    <?php echo GetLambdaLikePost(); ?>				
-                    
+
+                    <?php echo GetLambdaLikePost(); ?>
+
         			<?php endif; ?>
-                                             
-                </div><!-- .entry-meta -->    
-                   
-                
-               
-                    
-                   
-                
-            	</header>    
-                
-               
-        
-       
-        
+
+                </div><!-- .entry-meta -->
+
+
+
+
+
+
+            	</header>
+
+
+
+
+
         <div class="clear"></div>
-        
+
 		<div class="entry-content">
-        <?php if ( is_archive() || is_search() || get_option_tree('excerpt_blog') == 'yes') : 
-		
-			the_excerpt(); 
-	
-		else : 
-		
-			the_content( __( 'Read more <span class="meta-nav">&#043;</span>', 'Nevada' ) );       
-		
+        <?php if ( is_archive() || is_search() || get_option_tree('excerpt_blog') == 'yes') :
+
+			the_excerpt();
+
+		else :
+
+			the_content( __( 'Read more <span class="meta-nav">&#043;</span>', 'Nevada' ) );
+
 		endif; ?>
 		</div><!-- entry-summary -->
-		
+
         <div class="edit-link-wrap">
 				<?php edit_post_link( __( 'Edit', 'Nevada' ), '<span class="edit-link">', '</span>' ); ?>
 			</div><!-- .edit-link-wrap -->
-          </article>  	
+          </article>
 		</section><!-- #post-## -->
-                     
-    
-    <?php 
+
+
+    <?php
     #-----------------------------------------------------------------
     # Quote Format
     #-----------------------------------------------------------------
     ?>
 
 	<?php elseif ( ( function_exists( 'get_post_format' ) && 'quote' == get_post_format( $post->ID ) ) || in_category( _x( 'quotes', 'quote category slug', 'Nevada' ) )  ) : ?>
-               
+
         <section id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-        
-        <article class="entry-post clearfix">                              
-        
+
+        <article class="entry-post clearfix">
+
        <header class="entry-header clearfix">
-				
-                
+
+
                    	<?php if(in_array($post->ID,$sticky)) { echo '<span class="sticky-title">Sticky Post</span>'; } ?>
 					<h1 class="entry-title quote-post-title">
                         <a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'Nevada' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark"><?php the_title(); ?></a>
-                        
+
                     </h1>
-                    
+
                     <div class="entry-meta row clearfix">
-					
- 					<div class="post-ut">                        
+
+ 					<div class="post-ut">
 						<?php _e( 'By ', 'Nevada' ); ?>
 						<a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>">
 							<span class="author-link"><?php the_author(); ?></span>
@@ -596,7 +597,7 @@ $sticky = get_option( 'sticky_posts' );
                         
                     </h1>
                     
-                    <div class="entry-meta row clearfix">
+                    <div class="entry-meta  clearfix">
 
 
 					                
@@ -604,9 +605,7 @@ $sticky = get_option( 'sticky_posts' );
                         <?php echo lambda_posted_on(); ?>
                     </div> <!-- post date -->
                          
-                    <div class="post-ut">	
-                       <span class="comments-link"><?php comments_popup_link( __( '0 Comments', 'Nevada' ), __( '1 Comment', 'Nevada' ), __( '% Comments', 'Nevada' ) ); ?></span>
-                    </div><!-- post comments -->
+
                                              
                         <?php if(get_option_tree('activate_likes_in_blog') == "yes") : ?>
                     

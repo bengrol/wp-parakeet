@@ -153,8 +153,8 @@ if( !function_exists( 'home_blog_columns' ) ) {
 			
 			<h3 class="home-title"><span><?php echo lambda_translate_meta($metadata['blog_headline']); ?></span></h3>
 								
-		<?php endif; ?>	
-		
+		<?php endif; ?>
+
 		<?php scpi_render_lambda_blog($metadata); ?>
 		
 		</section>
@@ -198,7 +198,7 @@ if( !function_exists( 'home_testimonials' ) ) {
 		
 		<section class="clearfix<?php echo ($count == 1) ? ' home-border' : ''; ?>">
 			
-			<div class="lambda-service-excerpt one_half">
+			<div class="lambda-service-excerpt ">
 				
 				<?php if(isset($metadata['service_headline'])) :?>
 			
